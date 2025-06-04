@@ -1,4 +1,4 @@
-import { useHead, useRequestURL } from 'nuxt/app'
+import { useHead, useRequestURL, useRuntimeConfig } from 'nuxt/app'
 
 interface SeoOptions {
   title: string
@@ -11,11 +11,13 @@ interface SeoOptions {
   twitterDescription?: string
   twitterImage?: string
   other?: Array<Record<string, string>>
+  twitterCard?: string
 }
 
 export function useSeo(options: SeoOptions) {
   const url = useRequestURL()
-  const baseUrl = url.origin
+  const config = useRuntimeConfig()
+  const baseUrl = config.public.baseUrl || url.origin
   const fullUrl = `${baseUrl}${url.pathname}`
   // 去除最后面的斜杠
   const fullUrlWithoutSlash = fullUrl.replace(/\/$/, '')
@@ -58,7 +60,7 @@ export function useSeo(options: SeoOptions) {
       ...(options.other || []),
 
       // Twitter Card
-      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:card', content:  options.twitterCard || 'summary_large_image' },
       {
         name: 'twitter:title',
         content: options.twitterTitle || title,

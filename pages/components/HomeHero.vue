@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full min-h-[700px] relative flex items-center justify-center py-20 overflow-hidden">
+  <div class="w-full min-h-[800px] relative flex items-center justify-center py-24 overflow-hidden">
     <!-- 炫酷背景 -->
     <div class="absolute inset-0 -z-10">
       <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-500"></div>
@@ -9,14 +9,14 @@
         <div class="absolute w-[800px] h-[800px] rounded-full bg-sky-300/20 blur-[100px] -bottom-40 left-1/3 animate-pulse" style="animation-delay: 2s"></div>
       </div>
       <!-- 网格背景 -->
-      <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
-    </div>
-
-    <!-- 鼠标跟随效果 -->
-    <div v-if="!showForm" class="mouse-follower-container">
-      <div class="mouse-follower"></div>
-      <div class="mouse-follower mouse-follower-2"></div>
-      <div class="mouse-follower mouse-follower-3"></div>
+      <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:50px_50px]">
+        <!-- 鼠标跟随效果 -->
+        <div class="mouse-follower-container">
+          <div class="mouse-follower"></div>
+          <div class="mouse-follower mouse-follower-2"></div>
+          <div class="mouse-follower mouse-follower-3"></div>
+        </div>
+      </div>
     </div>
 
     <!-- 主内容区 -->
@@ -25,10 +25,10 @@
       <div v-if="!showForm" class="flex flex-col md:flex-row items-center gap-16">
         <div class="w-full md:w-1/2 space-y-8">
           <div class="space-y-4">
-            <h1 class="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent">
+            <h1 class="text-6xl md:text-8xl font-bold bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent">
               Flux Kontext
             </h1>
-            <p class="text-2xl text-white">
+            <p class="text-3xl text-white">
               AI Image Generation & Editing with Character Consistency
             </p>
           </div>
@@ -50,7 +50,7 @@
 
           <button 
             @click="showForm = true"
-            class="group relative px-8 py-4 bg-gradient-to-r from-blue-400 to-cyan-400 text-white text-xl font-bold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105"
+            class="group relative px-10 py-5 bg-gradient-to-r from-blue-400 to-cyan-400 text-white text-2xl font-bold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105"
           >
             <span class="relative z-10">Try It Now</span>
             <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -70,14 +70,24 @@
       </div>
 
       <!-- 表单区域 -->
-      <div v-else class="bg-white rounded-3xl shadow-2xl p-6 max-w-5xl mx-auto">
+      <div v-else class="bg-white rounded-3xl shadow-2xl p-2 max-w-5xl mx-auto relative">
+        <!-- 返回按钮 -->
+        <button 
+          @click="showForm = false"
+          class="absolute left-0 -top-10 flex items-center gap-2 text-white hover:text-blue-200 transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+          </svg>
+          <span class="text-sm font-medium">Back</span>
+        </button>
         <div class="flex flex-col md:flex-row w-full">
           <!-- 左侧上传区 -->
           <div class="w-full md:w-2/5 p-6 flex flex-col gap-4 border-b md:border-b-0 md:border-r border-gray-200/20">
-            <h2 class="text-xl font-bold text-gray-800">Flux Kontext</h2>
-            <p class="text-gray-500 text-xs mb-2">AI Image Generation & Editing with Character Consistency</p>
+            <h2 class="text-3xl font-bold text-gray-800">Flux Kontext</h2>
+            <p class="text-gray-500 text-base mb-4">AI Image Generation & Editing with Character Consistency</p>
 
-            <div class="text-gray-800 text-xs">
+            <div class="text-gray-800 text-sm">
               <p>Image (Optional)</p>
               <p class="text-gray-500">Upload Image(s)</p>
             </div>
@@ -96,9 +106,7 @@
                   @click.stop="removeImage"
                   type="button"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-gray-500 hover:text-red-500">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
+                  <XMarkIcon class="w-4 h-4 text-gray-500 hover:text-red-500" />
                 </button>
               </template>
 
@@ -106,16 +114,16 @@
               <template v-else>
                 <!-- Heroicons 图片图标 -->
                 <PhotoIcon class="w-10 h-10 text-gray-400 mb-1" />
-                <span class="text-gray-400 text-xs">
+                <span class="text-gray-400 text-sm">
                   Drag & drop or 
                   <span class="text-blue-500 cursor-pointer underline" @click.stop="() => fileInputRef?.click()">browse</span>
                 </span>
-                <span class="text-gray-300 text-xs mt-1">PNG, JPG, JPEG or WEBP (max: 10MB)</span>
+                <span class="text-gray-300 text-sm mt-1">PNG, JPG, JPEG or WEBP (max: 10MB)</span>
               </template>
               <input type="file" accept="image/*" class="hidden" ref="fileInputRef" @change="onFileChange" />
             </div>
             <!-- Prompt输入框 -->
-            <textarea class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none" rows="2" placeholder="Describe how your image should look like..."></textarea>
+            <textarea v-model="prompt" class="w-full border border-gray-200 rounded-lg px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none" rows="3" placeholder="Describe how your image should look like..."></textarea>
             <!-- 尺寸选择 -->
             <div class="flex flex-wrap gap-2 mt-1">
               <button
@@ -138,7 +146,7 @@
               </button>
             </div>
             <!-- 生成按钮 -->
-            <button class="mt-4 w-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold py-2 rounded-xl shadow hover:from-blue-600 hover:to-cyan-600 transition">Generate <span class="ml-1 text-xs">5 Credits</span></button>
+            <button @click="handleSubmit" class="mt-4 w-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold py-2 rounded-xl shadow hover:from-blue-600 hover:to-cyan-600 transition">Generate</button>
           </div>
 
           <!-- 右侧图片对比区 -->
@@ -153,21 +161,29 @@
 
             <!-- 结果展示区域 -->
             <div v-else-if="generatedImage" class="w-full flex flex-col items-center gap-6">
-              <div class="w-full aspect-square rounded-2xl overflow-hidden bg-gray-100 shadow-lg">
+              <div class="w-full aspect-square rounded-2xl overflow-hidden bg-gray-100 shadow-lg relative p-4">
+                <div v-if="isImageLoading" class="absolute inset-0 flex items-center justify-center bg-gray-100">
+                  <div class="flex flex-col items-center gap-4">
+                    <ArrowPathIcon class="w-12 h-12 text-blue-500 animate-spin" />
+                    <span class="text-gray-600">Loading image...</span>
+                  </div>
+                </div>
                 <nuxt-img 
                   :src="generatedImage" 
                   alt="Generated Result" 
-                  class="w-full h-full object-contain"
+                  class="w-full h-full object-contain rounded-xl"
+                  @load="handleImageLoad"
+                  @error="handleImageError"
                 />
               </div>
               <button 
                 @click="handleDownload"
-                class="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-xl shadow hover:from-blue-600 hover:to-cyan-600 transition"
+                :disabled="isDownloading"
+                class="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-xl shadow hover:from-blue-600 hover:to-cyan-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                </svg>
-                Download Result
+                <ArrowPathIcon v-if="isDownloading" class="animate-spin h-5 w-5" />
+                <ArrowDownTrayIcon v-else class="h-5 w-5" />
+                {{ isDownloading ? 'Downloading...' : 'Download Result' }}
               </button>
             </div>
 
@@ -181,6 +197,13 @@
         </div>
       </div>
     </div>
+    <Toast
+      :show="toast.show"
+      :title="toast.title"
+      :message="toast.message"
+      :type="toast.type"
+      duration="2000"
+    />
   </div>
 </template>
 
@@ -188,7 +211,14 @@
 import { ref, onMounted, computed, watch, defineAsyncComponent } from 'vue'
 import { createTask } from '~/api/index'
 import { useUserStore } from '~/stores/user'
-import { PhotoIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/outline'
+import { 
+  PhotoIcon, 
+  ChevronLeftIcon, 
+  ChevronRightIcon,
+  ArrowDownTrayIcon,
+  ArrowPathIcon,
+  XMarkIcon
+} from '@heroicons/vue/24/outline'
 const ImageCompare = defineAsyncComponent(() => import('~/components/ImageCompare.vue'))
 
 import { useToast } from '~/composables/useToast';
@@ -210,19 +240,23 @@ const originImg = ref('/logo.png')
 
 // 上传的图片
 const uploadImg = ref('')
+const uploadFile = ref<File | null>(null)
+// 输入的 prompt
+const prompt = ref('')
 
 // 生成的图片
 const generatedImage = ref('')
+const isImageLoading = ref(false)
 
 // 比例选项
 const ratios = [
-  { label: 'Match Input', value: 'match', icon: { w: 14, h: 14 } },
+  { label: 'Match Input', value: 'match_input_image', icon: { w: 14, h: 14 } },
   { label: '2:3', value: '2:3', icon: { w: 10, h: 15 } },
   { label: '3:2', value: '3:2', icon: { w: 15, h: 10 } },
   { label: '1:1', value: '1:1', icon: { w: 14, h: 14 } },
   { label: '16:9', value: '16:9', icon: { w: 16, h: 9 } }
 ]
-const selectedRatio = ref('match')
+const selectedRatio = ref('match_input_image')
 const selectRatio = (val: string) => {
   selectedRatio.value = val
 }
@@ -232,17 +266,18 @@ const fileInputRef = ref<HTMLInputElement | null>(null)
 const onFileChange = (e: Event) => {
   const files = (e.target as HTMLInputElement).files
   if (files && files[0]) {
-    uploadImg.value = URL.createObjectURL(files[0])
     handleUpload(files[0])
   }
 }
 const removeImage = () => {
   uploadImg.value = ''
+  uploadFile.value = null
   if (fileInputRef.value) fileInputRef.value.value = ''
 }
 
 // 添加登录状态检查方法
 const checkLoginStatus = async () => {
+  debugger
   if (!userInfo.value) {
     showToast('Please login first to use this feature', 'error')
     // 使用 id 选择器获取登录按钮
@@ -309,57 +344,74 @@ onMounted(() => {
     }
   }
 
-  // 只在首屏区域添加事件监听
-  watch(showForm, (newValue) => {
-    if (!newValue) {
-      document.addEventListener('mousemove', handleMouseMove)
-    } else {
-      document.removeEventListener('mousemove', handleMouseMove)
-    }
-  }, { immediate: true })
+  // 始终添加事件监听，不再根据 showForm 状态移除
+  document.addEventListener('mousemove', handleMouseMove)
 })
 
 // 处理图片
 const isProcessing = ref(false);//是否处理中
-const processImage = async (file: File) => {
-  if (!file) return
+
+// 处理图片上传
+const handleUpload = async (file: File) => {
+  // 检查登录状态
+  if (!await checkLoginStatus()) {
+    return
+  }
   
-  // 创建临时URL
-  originImg.value = URL.createObjectURL(file)
-  isProcessing.value = true;//处理中
-  
+  // 保存文件引用
+  uploadFile.value = file
+  // 创建预览URL
+  uploadImg.value = URL.createObjectURL(file)
+}
+
+// 处理表单提交
+const handleSubmit = async () => {
+  // 检查登录状态和使用次数
+  if (!await checkLoginStatus() || !checkUsageLimit() || isProcessing.value) {
+    return
+  }
+  if (!prompt.value) {
+    showToast('Please enter a prompt', 'error')
+    // 获取焦点
+    const promptInput = document.querySelector('textarea')
+    if (promptInput) {
+      promptInput.focus()
+    }
+    return
+  }
+
+  isProcessing.value = true
+  let reqData = {
+    prompt: prompt.value,
+    size: selectedRatio.value,
+  } as any
+  if (uploadFile.value) {
+    reqData.file = uploadFile.value
+  }
   try {
-    const response = await createTask({file}) as any
-    isProcessing.value = false // 处理完成
-    if (response?.code==200) {
+    const response = await createTask(reqData) as any
+    if (response?.code === 200) {
       generatedImage.value = response.data.image_url
       // 减少使用次数
       remainingTimes.value--
       // 更新用户信息
       await userStore.fetchUserInfo(true)
-    }else{
+    } else {
       showToast(response.msg, 'error')
     }
   } catch (error) {
     console.error('Failed to process image:', error)
-    isProcessing.value = false//处理完成
-    showToast('Failed to process image, please try again later', 'error')
+    showToast('Failed to process the image, please try again later', 'error')
+  } finally {
+    isProcessing.value = false
   }
-}
-
-// 上传图片点击触发
-const handleUpload = async (file: File) => {
-  // 检查登录状态|使用次数|是否处理中
-  if (!await checkLoginStatus() || !checkUsageLimit() || isProcessing.value) {
-    return
-  }
-  // 处理图片
-  processImage(file)
 }
 
 // 下载图片
+const isDownloading = ref(false)
 const handleDownload = async () => {
-  if (!generatedImage.value) return
+  if (!generatedImage.value || isDownloading.value) return
+  isDownloading.value = true
   try {
     const response = await fetch(generatedImage.value)
     if (!response.ok) {
@@ -380,6 +432,8 @@ const handleDownload = async () => {
   } catch (error) {
     console.error('Download failed:', error)
     showToast('Download failed, please try again later', 'error')
+  } finally {
+    isDownloading.value = false
   }
 }
 // 上传图片点击触发
@@ -388,6 +442,24 @@ const handleUploadAreaClick = () => {
 }
 
 const showForm = ref(false)
+
+// 监听图片加载
+const handleImageLoad = () => {
+  isImageLoading.value = false
+}
+
+// 监听图片加载失败
+const handleImageError = () => {
+  isImageLoading.value = false
+  showToast('Failed to load image', 'error')
+}
+
+// 监听生成的图片URL变化
+watch(generatedImage, (newUrl) => {
+  if (newUrl) {
+    isImageLoading.value = true
+  }
+})
 </script>
 
 <style scoped>
@@ -407,9 +479,9 @@ const showForm = ref(false)
   pointer-events: none;
   transform: translate(-50%, -50%);
   transition: transform 0.1s ease;
-  z-index: 9999;
   mix-blend-mode: screen;
   box-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
+  opacity: 0;
 }
 
 .mouse-follower-2 {
@@ -428,6 +500,14 @@ const showForm = ref(false)
   transition: transform 0.2s ease;
   mix-blend-mode: screen;
   box-shadow: 0 0 20px rgba(37, 99, 235, 0.1);
+}
+
+/* 添加表单区域的背景样式 */
+.bg-white {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(10px);
 }
 
 @keyframes float {

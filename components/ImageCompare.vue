@@ -8,24 +8,24 @@
   >
     <div class="absolute top-4 left-4 bg-black/60 text-white px-2 py-1 rounded-full text-sm z-10">Before</div>
     <div class="absolute top-4 right-4 bg-black/60 text-white px-2 py-1 rounded-full text-sm z-10">After</div>
-    <!-- 原图（完整显示） -->
+    <!-- 结果图片 -->
     <div class="absolute inset-0">
       <nuxt-img 
-        :src="beforeImage" 
+        :src="afterImage" 
         alt="Original" 
-        class="w-full h-full object-contain" 
+        class="w-full h-full object-cover" 
       />
     </div>
     
-    <!-- 结果图片（可裁切） -->
+    <!-- 原图 -->
     <div 
       class="absolute inset-0 overflow-hidden"
       :style="{ clipPath: `inset(0 ${100 - position}% 0 0)` }"
     >
       <nuxt-img 
-        :src="afterImage" 
+        :src="beforeImage" 
         alt="Result" 
-        class="w-full h-full object-contain"
+        class="w-full h-full object-cover"
       />
     </div>
 

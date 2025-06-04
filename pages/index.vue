@@ -9,6 +9,16 @@
         <HomeHero />
       </section>
 
+      <!-- 对比展示模块 -->
+      <section id="compare">
+        <Compare />
+      </section>
+
+      <!-- 评价模块 -->
+      <section id="review">
+        <ReviewDisplay />
+      </section>
+
       <!-- 定价模块 -->
       <section id="pricing">
         <PricingPlans />
@@ -35,7 +45,9 @@ import { useSeo } from '~/composables/useSeo';
 
 const PricingPlans = defineAsyncComponent(() => import('~/components/PricingPlans.vue'))
 const HomeHero = defineAsyncComponent(() => import('~/pages/components/HomeHero.vue'))
+const Compare = defineAsyncComponent(() => import('~/pages/components/Compare.vue'))
 const FaqSection = defineAsyncComponent(() => import('~/pages/components/FaqSection.vue'))
+const ReviewDisplay = defineAsyncComponent(() => import('~/pages/components/ReviewDisplay.vue'))
 
 import { useToast } from '~/composables/useToast';
 const { toast, showToast } = useToast();

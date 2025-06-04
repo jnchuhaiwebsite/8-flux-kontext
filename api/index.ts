@@ -42,9 +42,7 @@ export const setUserInfo = async (data: any) => {
       };
     }
 
-    console.log('开始设置用户信息:', data);
     const response = await apiRequest<UserInfoResponse>(urlList.setUserInfo, 'POST', data, false);
-    console.log('用户信息响应:', response);
     
     // 检查响应
     if (!response || !response.data) {

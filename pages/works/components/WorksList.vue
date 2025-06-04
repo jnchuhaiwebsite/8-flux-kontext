@@ -1,6 +1,6 @@
 <template>
   <div class="works-list">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[400px]">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 min-h-[400px]">
       <!-- 加载状态 -->
       <div v-if="loading" class="col-span-full flex items-center justify-center min-h-[400px]">
         <div class="flex flex-col items-center gap-2">
@@ -11,7 +11,15 @@
 
       <!-- 作品列表 -->
       <template v-else>
-        <div v-for="work in works" :key="work.task_id" class="work-item">
+        <div v-if="!works.length" class="col-span-full flex items-center justify-center min-h-[400px]">
+          <div class="flex flex-col items-center gap-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <p class="text-gray-500 text-lg">暂无作品</p>
+          </div>
+        </div>
+        <div v-else v-for="work in works" :key="work.task_id" class="work-item">
           <div class="relative aspect-square rounded-lg overflow-hidden group">
             <NuxtImg 
               :src="work.generate_image" 
@@ -27,8 +35,8 @@
                 @click="openLightbox(work.generate_image)"
                 class="bg-white bg-opacity-80 p-2 rounded-full hover:bg-opacity-100 transition-all"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
                 </svg>
               </button>
             </div>
@@ -121,7 +129,7 @@ const totalPage = ref(1)
 const pageSize = 12
 
 // 加载状态
-const loading = ref(false)
+const loading = ref(true)
 
 // 图片预览相关状态
 const showPreview = ref(false)
@@ -138,16 +146,17 @@ const fetchWorks = async (page: number) => {
     }) as any;
     
     if (response.code === 200) {
-      const data = response.data.data;
-      works.value = data
-      totalPage.value = response.data.total
-    }else{
+      works.value = response.data.list
+      totalPage.value = response.data.total_page
+    } else {
       works.value = []
       totalPage.value = 0
-      showToast(response.msg||'Failed to retrieve the list of works')
+      showToast(response.msg || '获取作品列表失败')
     }
   } catch (error) {
     console.error('获取作品列表失败:', error)
+    works.value = []
+    totalPage.value = 0
   } finally {
     loading.value = false
   }
