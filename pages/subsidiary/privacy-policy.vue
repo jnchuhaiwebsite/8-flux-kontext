@@ -9,23 +9,23 @@
       </NuxtLink>
     </div>
     
-    <h1 class="text-3xl font-bold mb-8">Black Cross Background Removal - Privacy Policy</h1>
+    <h1 class="text-3xl font-bold mb-8">Flux Kontext - Privacy Policy</h1>
     
     <div class="space-y-6">
       <section>
         <h2 class="text-2xl font-semibold mb-4">Introduction</h2>
-        <p class="text-gray-700">Welcome to our professional black cross background removal service. This privacy policy explains how we collect, use, store, and protect your personal information while using our black cross background removal technology. We value your privacy and are committed to transparently handling your data.</p>
+        <p class="text-gray-700">Welcome to Flux Kontext. This privacy policy explains how we collect, use, store, and protect your personal information while using our AI-powered image processing and context management services. We value your privacy and are committed to transparently handling your data.</p>
       </section>
 
       <section>
         <h2 class="text-2xl font-semibold mb-4">Information Collection</h2>
-        <p class="text-gray-700">When using our black cross background removal service, we may collect the following types of information:</p>
+        <p class="text-gray-700">When using our services, we may collect the following types of information:</p>
         <ul class="list-disc pl-6 mt-4 space-y-2">
           <li><strong>Account Information</strong>: When you register an account, we collect your email address and login credentials.</li>
-          <li><strong>User Content</strong>: This includes images you upload for black cross background removal processing.</li>
-          <li><strong>Usage Data</strong>: How you interact with our black cross background removal service, when you access it, which features you use, and the processed images you generate.</li>
+          <li><strong>User Content</strong>: This includes images and data you upload for processing through our AI services.</li>
+          <li><strong>Usage Data</strong>: How you interact with our services, when you access them, which features you use, and the processed content you generate.</li>
           <li><strong>Device Information</strong>: Browser type, IP address, device type, operating system, and other technical identifiers.</li>
-          <li><strong>Payment Information</strong>: If you purchase our black cross background removal services, we collect necessary payment information (we do not directly store your complete payment card information).</li>
+          <li><strong>Payment Information</strong>: If you purchase our services, we collect necessary payment information (we do not directly store your complete payment card information).</li>
         </ul>
       </section>
 
@@ -33,8 +33,8 @@
         <h2 class="text-2xl font-semibold mb-4">Information Usage</h2>
         <p class="text-gray-700">We use the collected information to:</p>
         <ul class="list-disc pl-6 mt-4 space-y-2">
-          <li>Provide, maintain, and improve our background removal service</li>
-          <li>Process your images and remove black cross backgrounds</li>
+          <li>Provide, maintain, and improve our AI-powered services</li>
+          <li>Process your content and manage context</li>
           <li>Manage your account and provide customer support</li>
           <li>Send service-related notifications and updates</li>
           <li>Prevent fraudulent activities and enhance security</li>
@@ -45,12 +45,12 @@
 
       <section>
         <h2 class="text-2xl font-semibold mb-4">AI Technology Usage</h2>
-        <p class="text-gray-700">Our service uses artificial intelligence technology to remove black cross backgrounds from your images. Please note:</p>
+        <p class="text-gray-700">Our service uses artificial intelligence technology for image processing and context management. Please note:</p>
         <ul class="list-disc pl-6 mt-4 space-y-2">
-          <li>Your images are submitted to our AI system for background removal processing</li>
-          <li>Processed images may be used as anonymous data to improve our systems</li>
+          <li>Your content is processed through our AI systems for context-aware operations</li>
+          <li>Processed data may be used as anonymous data to improve our systems</li>
           <li>We do not associate your personal identity with data used for training purposes</li>
-          <li>We offer various background removal options and image enhancement features</li>
+          <li>We offer various processing options and enhancement features</li>
         </ul>
       </section>
 
@@ -97,7 +97,7 @@
       <section>
         <h2 class="text-2xl font-semibold mb-4">Contact Us</h2>
         <p class="text-gray-700">If you have any questions or concerns about our Privacy Policy, please contact us:</p>
-        <p class="text-gray-700 mt-2">Email:ceo@ghiblimagicmaker.com</p>
+        <p class="text-gray-700 mt-2">Email: ceo@ghiblimagicmaker.com</p>
       </section>
     </div>
   </div>
@@ -116,9 +116,9 @@ definePageMeta({
 })
 
 useHead({
-  title: 'Black Cross Background Removal Service | Privacy Policy',
+  title: 'Flux Kontext | Privacy Policy',
   meta: [
-    { name: 'description', content: 'Professional Black Cross Background Removal Service Privacy Policy: Learn how we protect your data while using our AI-powered black cross background removal technology, including image processing and data security.' },
+    { name: 'description', content: 'Flux Kontext Privacy Policy: Learn how we protect your data while using our AI-powered image processing and context management services, including data security and user rights.' },
   ],
   link: [{ rel: 'canonical', href: `${baseUrl}/subsidiary/privacy-policy` }]
 })

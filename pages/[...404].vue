@@ -1,10 +1,10 @@
 <template>
   <div class="error-container">
     <h1 class="error-title">404</h1>
-    <p class="error-message">Sorry, the page you visited does not exist</p>
-    <p class="error-submessage">The page may have been removed or the link is incorrect</p>
+    <p class="error-message">Page Not Found</p>
+    <p class="error-submessage">The page you're looking for doesn't exist or has been moved</p>
     <div class="action-buttons">
-      <NuxtLink to="/" class="back-home-link">Back to Home</NuxtLink>
+      <NuxtLink to="/" class="back-home-link">Return to Homepage</NuxtLink>
     </div>
   </div>
 </template>
@@ -13,11 +13,11 @@
 import { useHead } from 'nuxt/app';
 
 useHead({
-  title: 'Page Not Found - 404 Error - Black Cross Background Remover',
+  title: 'Page Not Found - 404 Error - Flux Kontext',
   meta: [
     {
       name: 'description',
-      content: 'Sorry, the page you requested does not exist. Please return to the homepage or use the navigation menu to find what you need.'
+      content: 'The page you requested could not be found. Please return to the homepage or use the navigation menu to find what you need.'
     },
     { name: 'robots', content: 'noindex, nofollow' }
   ]

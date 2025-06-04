@@ -15,7 +15,7 @@ Disallow: /search?
 Disallow: /_nuxt/
 
 # 声明网站地图
-Sitemap: https://www.xbgremove.com/sitemap.xml
+Sitemap: https://www.kontextimg.com/sitemap.xml
 
 
 

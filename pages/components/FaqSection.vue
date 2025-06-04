@@ -79,32 +79,32 @@ defineOptions({
 // FAQ数据
 const allFaqItems = [
   {
-    question: 'How to remove image background?',
-    answer: 'Simply upload your image and let our app do the work! XBGRemove uses AI to automatically remove photo backgrounds, giving you clean, background-free images. Our AI technology precisely identifies foreground and background elements to ensure the best results.'
+    question: 'How to edit images with Flux Kontext?',
+    answer: 'Using Flux Kontext is simple! Just upload your image, enter a text prompt describing your desired edits, select the image size ratio, and click generate. Our AI technology will automatically process your image while maintaining character consistency and achieving your desired editing effects.'
   },
   {
-    question: 'Can I remove backgrounds on my phone?',
-    answer: 'Yes, you can use XBGRemove to remove backgrounds directly in your mobile browser. Our platform is fully mobile-compatible and requires no app installation. You can access our website through your phone\'s browser, upload images, and get results instantly.'
+    question: 'What image formats does Flux Kontext support?',
+    answer: 'Flux Kontext supports various common image formats including PNG, JPG, JPEG, and WEBP. For best results, we recommend using high-quality images with a maximum file size of 10MB.'
   },
   {
-    question: 'What image formats are supported?',
-    answer: 'We support various common image formats including JPG, PNG, WEBP, and more. For best results, we recommend using high-quality images.'
-  },
-  {
-    question: 'What is the quality of processed images?',
-    answer: 'Our AI technology maintains the original image quality while precisely removing backgrounds. Processed images retain their original resolution with smooth, natural edges, making them suitable for various design applications.'
+    question: 'How good is Flux Kontext\'s image editing quality?',
+    answer: 'Flux Kontext uses advanced AI technology to precisely edit image content while maintaining character consistency. Whether it\'s background removal, content modification, or style transformation, we ensure natural and professional quality results.'
   },
   {
     question: 'How long does it take to process an image?',
-    answer: 'Typically, a regular-sized image takes 2-5 seconds to process. Processing speed depends on image size and network conditions. Our system is optimized to handle most images quickly.'
+    answer: 'Typically, a regular-sized image takes 5-10 seconds to process. Processing speed depends on image size, network conditions, and the complexity of the desired edits. Our system is optimized to handle most images quickly.'
   },
   {
-    question: 'Can I use the processed images commercially?',
-    answer: 'This depends on the copyright of your original image. If you own the rights to the original image or have proper usage permissions, you can use the processed images commercially. We recommend ensuring you have appropriate image usage rights.'
+    question: 'How to get the best image editing results?',
+    answer: 'For optimal results, use clear images and provide detailed descriptions in your text prompts. Choosing the right image size ratio is also important as it affects the quality of the final result.'
   },
   {
-    question: 'How to get the best background removal results?',
-    answer: 'For optimal results, use images with simple backgrounds and clear subjects. Avoid images with complex backgrounds or where the subject and background colors are similar. Using high-resolution images will yield better results when possible.'
+    question: 'Can I use Flux Kontext\'s edited images commercially?',
+    answer: 'This depends on the copyright of your original image. If you own the rights to the original image or have proper usage permissions, you can use the edited images commercially. We recommend ensuring you have appropriate image usage rights.'
+  },
+  {
+    question: 'How does Flux Kontext maintain character consistency?',
+    answer: 'Flux Kontext uses advanced AI models to intelligently recognize and maintain character features and styles in images. Even during the editing process, it ensures consistent appearance, expressions, and style of characters, making the editing results more natural.'
   }
 ];
 

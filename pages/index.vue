@@ -31,22 +31,22 @@
 
 <script setup lang="ts">
 import { onBeforeMount,defineAsyncComponent} from "vue";
-import { useToast } from '~/composables/useToast';
 import { useSeo } from '~/composables/useSeo';
 
 const PricingPlans = defineAsyncComponent(() => import('~/components/PricingPlans.vue'))
 const HomeHero = defineAsyncComponent(() => import('~/pages/components/HomeHero.vue'))
 const FaqSection = defineAsyncComponent(() => import('~/pages/components/FaqSection.vue'))
 
+import { useToast } from '~/composables/useToast';
 const { toast, showToast } = useToast();
 
 useSeo({
-  title: "Black Cross Removed Background - Background Removal Tool",
-  description: "Remove black cross backgrounds with AI. Get clean, transparent PNGs instantly. Perfect for professional use and avoiding religious conflicts.",
-  ogTitle: "Black Cross Removed Background - AI Image Tool",
-  ogDescription: "Remove black cross backgrounds with AI. Get clean, transparent PNGs instantly. Perfect for professional use and avoiding religious conflicts.",
-  twitterTitle: "Black Cross Removed Background - AI Image Tool",
-  twitterDescription: "Remove black cross backgrounds with AI. Get clean, transparent PNGs instantly. Perfect for professional use and avoiding religious conflicts."
+  title: "Flux Kontext - AI Image Editing & Background Removal",
+  description: "Transform your images with Flux Kontext's AI-powered editing tools. Remove backgrounds, edit images with text prompts, and maintain character consistency in your creations.",
+  ogTitle: "Flux Kontext - AI Image Editing & Background Removal",
+  ogDescription: "Transform your images with Flux Kontext's AI-powered editing tools. Remove backgrounds, edit images with text prompts, and maintain character consistency in your creations.",
+  twitterTitle: "Flux Kontext - AI Image Editing & Background Removal",
+  twitterDescription: "Transform your images with Flux Kontext's AI-powered editing tools. Remove backgrounds, edit images with text prompts, and maintain character consistency in your creations."
 });
 
 // 处理支付回调
@@ -72,9 +72,9 @@ onBeforeMount(() => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "Black Cross Background Remover",
+    name: "Flux Kontext",
     description:
-      "Professional Black Cross Background Remover tool. Create clean, professional images with our advanced AI technology.",
+      "Professional AI image editing platform. Edit images with text prompts, remove backgrounds, and maintain character consistency with our advanced AI technology.",
     applicationCategory: "ImageEditingApplication",
     operatingSystem: "All",
     offers: {

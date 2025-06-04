@@ -2,8 +2,8 @@
   <div class="min-h-screen blog-page-gradient pb-10">
     <!-- Page title -->
     <div class="pt-32 pb-12 text-center">
-      <h1 class="text-3xl md:text-4xl font-bold mb-2 text-theme">Black Cross Background Remover Blog</h1>
-      <p class="text-gray-600">Tips, tutorials and inspiration for professional image editing and background removal</p>
+      <h1 class="text-3xl md:text-4xl font-bold mb-2 text-theme">Flux Kontext Blog</h1>
+      <p class="text-gray-600">AI image editing tips, tutorials, and inspiration to help you master professional image processing</p>
     </div>
     
     <div class="flex flex-col md:flex-row gap-4 md:gap-8 mb-16 mx-auto w-11/12 max-w-7xl">
@@ -63,12 +63,12 @@ import { useBlogPosts } from '~/composables/useBlogPosts'
 import { useSeo } from '~/composables/useSeo'
 
 useSeo({
-  title: "Black Cross Removed Background Blog - Tutorials",
-  description: "Your ultimate Black Cross Removed Background resource: discover creative inspiration, master removal with tutorials, and stay updated on new features.",
-  ogTitle: "Black Cross Removed Background Blog - Tutorials",
-  ogDescription: "Your ultimate Black Cross Removed Background resource: discover creative inspiration, master removal with tutorials, and stay updated on new features.",
-  twitterTitle: "Black Cross Removed Background Blog - Tutorials",
-  twitterDescription: "Your ultimate Black Cross Removed Background resource: discover creative inspiration, master removal with tutorials, and stay updated on new features."
+  title: "Flux Kontext Blog - AI Image Editing Tutorials & Tips",
+  description: "Explore Flux Kontext's AI image editing features: learn professional image processing techniques, get creative inspiration, and stay updated with the latest features.",
+  ogTitle: "Flux Kontext Blog - AI Image Editing Tutorials & Tips",
+  ogDescription: "Explore Flux Kontext's AI image editing features: learn professional image processing techniques, get creative inspiration, and stay updated with the latest features.",
+  twitterTitle: "Flux Kontext Blog - AI Image Editing Tutorials & Tips",
+  twitterDescription: "Explore Flux Kontext's AI image editing features: learn professional image processing techniques, get creative inspiration, and stay updated with the latest features."
 });
 
 // Use blog posts data

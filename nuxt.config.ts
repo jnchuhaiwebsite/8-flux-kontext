@@ -20,25 +20,26 @@ export default defineNuxtConfig({
     '@clerk/nuxt', // Clerk 集成
     '@pinia/nuxt', // Pinia 状态管理
     '@nuxtjs/tailwindcss', // Tailwind CSS 集成
+    '@nuxt/image', // Nuxt Image 模块
   ],
   app: {
     head: {
       htmlAttrs: {
         lang: 'en' // 设置 HTML 语言
       },
-      title: 'Black Cross Background Remover - Professional AI Image Editing Tool', // 网站标题
+      title: 'Flux Kontext - Intelligent Context Management System', // Website title
       meta: [
-        { charset: 'utf-8' }, // 字符集
-        { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' }, // 移动端视口设置
-        { name: 'description', content: 'Black Cross Background Remover - Professional AI-powered tool for removing backgrounds from black cross images. Get clean, transparent backgrounds instantly with our advanced technology.' }, // 网站描述
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' },
+        { name: 'description', content: 'Flux Kontext - Professional intelligent context management system that helps you better manage and optimize workflows, enhancing team collaboration efficiency.' }, // Website description
       ],
       link: [
-        { rel: 'canonical', href: 'https://www.xbgremove.com' }, // 规范链接
-        // { rel: 'alternate', href: 'https://www.xbgremove.com', hreflang: 'x-default' }, // 默认语言版本
-        // { rel: 'alternate', href: 'https://www.xbgremove.com', hreflang: 'en' }, // 英文版本
+        { rel: 'canonical', href: 'https://www.kontextimg.com' }, // 规范链接
+        // { rel: 'alternate', href: 'https://www.kontextimg.com', hreflang: 'x-default' }, // 默认语言版本
+        // { rel: 'alternate', href: 'https://www.kontextimg.com', hreflang: 'en' }, // 英文版本
       ],
       script: [
-        { src: '/js/c6h.js', async: true } 
+        // { src: '/js/c6h.js', async: true } 
       ] // 外部脚本
     }
   },

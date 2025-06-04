@@ -1,6 +1,13 @@
-# Black Cross Background Remover
+# Flux Kontext - AI 图像编辑平台
 
-Black Cross Background Remover 是一个专业的 AI 背景移除工具，使用 Nuxt.js 构建，提供快速、准确的图片背景移除服务。
+Flux Kontext 是一个专业的 AI 图像编辑平台，提供智能图像编辑、背景移除和角色一致性保持等功能。使用 Nuxt.js 构建，为用户提供快速、准确的图像处理服务。
+
+## 核心功能
+
+1. **AI 图像编辑**：通过文本提示词智能编辑图像
+2. **背景移除**：一键移除图片背景
+3. **角色一致性**：保持角色特征的一致性
+4. **多尺寸支持**：支持多种图片比例（1:1、2:3、3:2等）
 
 ## 性能优化
 
@@ -89,8 +96,9 @@ yarn postinstall
 经过优化，项目达到了以下性能指标：
 
 - 首屏加载时间: < 2 秒
-- JS 包体积优化: 减少 ~40%
-- 图像处理速度: 平均 < 3 秒/张
+- 图像处理响应时间: < 3 秒
+- 图片上传速度: 支持最大 10MB 图片
+- 支持格式: PNG, JPG, JPEG, WEBP
 - Google PageSpeed 得分: 90+
 
 ## 开发维护
@@ -105,8 +113,10 @@ yarn postinstall
 6. 保持 CSS 组织结构与项目设置一致
 7. 遵循环境变量配置规范
 8. 图像处理时注意内存管理
+9. 确保用户认证状态检查
+10. 实现合理的积分使用限制
 
 ## 授权协议
 
-© 2023-2024 Black Cross Background Remover - 保留所有权利
-网站: https://www.xbgremove.com
+© 2023-2024 Flux Kontext - 保留所有权利
+网站: https://www.kontextimg.com

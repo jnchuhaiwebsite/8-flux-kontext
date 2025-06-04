@@ -16,98 +16,97 @@ export interface BlogPost {
 // Blog post data
 const blogPostsData: BlogPost[] = [
   {
-    id: 'black-cross-background-removal',
-    title: 'Professional Black Cross Background Removal: Transform Your Images',
+    id: 'flux-kontext-introduction',
+    title: 'Introducing Flux Kontext: Transform Your Images with AI Text Prompts',
     content: `
-      <h2 class="text-2xl font-bold mb-4">Professional Black Cross Background Removal</h2>
-      <p>Discover the power of AI-powered black cross background removal technology. Transform your images with precision and ease, creating stunning visuals with transparent backgrounds.</p>
+      <h2 class="text-2xl font-bold mb-4">Welcome to Flux Kontext</h2>
+      <p>Experience the future of image editing with Flux Kontext, your AI-powered image transformation tool. Create stunning visuals by simply describing how you want your images to look.</p>
       
-      <p>Black cross background removal has revolutionized image editing, allowing professionals and enthusiasts alike to create clean, professional-looking images without complex editing software.</p>
+      <p>Flux Kontext brings professional-grade image editing capabilities to your fingertips, making it easy to transform your images with natural language prompts.</p>
       
-      <p>Our advanced AI technology ensures precise edge detection and smooth background removal, even for complex images with intricate details around the black cross symbol.</p>
-      
-      <h2>Key features of our black cross background removal tool:</h2>
+      <h2>Key Features of Flux Kontext:</h2>
       <ul class="list-disc pl-5 mb-6">
-        <li>One-Click Removal - Instantly remove backgrounds with a single click</li>
-        <li>High Precision - Maintains perfect edges around the black cross</li>
-        <li>Smart Detection - Automatically identifies and preserves the black cross</li>
-        <li>Quality Preservation - Maintains original image quality and details</li>
-        <li>Instant Preview - See results in real-time before downloading</li>
+        <li>Text-to-Image Editing - Transform images using natural language descriptions</li>
+        <li>Usage-Based System - Simple credit system for image processing</li>
+        <li>High-Quality Results - Professional-grade image transformations</li>
+        <li>User-Friendly Interface - Intuitive design for seamless experience</li>
+        <li>Instant Results - Quick processing with immediate preview</li>
       </ul>
       
-      <p>Whether you're creating marketing materials, social media content, or professional presentations, our black cross background removal tool helps you achieve perfect results every time.</p>
+      <p>Perfect for social media content, marketing materials, and personal projects, Flux Kontext helps you achieve professional results with minimal effort.</p>
     `,
-    description: 'Learn about professional black cross background removal technology and its applications',
-    date: '2025-05-28',
-    category: 'Creative Inspiration',
+    description: 'Discover Flux Kontext: Your AI-powered image transformation solution',
+    date: '2024-03-20',
+    category: 'Product Introduction',
     skip: false,
-    cta: "Start Removing",
+    cta: "Try Now",
   },
   {
-    id: 'feature-update',
-    title: 'New Update: Enhanced Black Cross Background Removal Features',
+    id: 'how-to-use-flux',
+    title: 'Getting Started with Flux Kontext: A Simple Guide',
     content: `
-      <h2 class="text-2xl font-bold mb-4">Latest Update Announcement</h2>
-      <p>We're excited to announce significant improvements to our black cross background removal technology, making it more powerful and user-friendly than ever.</p>
-      
-      <h3 class="text-xl font-bold my-4">New Features</h3>
-      <ul class="list-disc pl-5 mb-6">
-        <li>Advanced Edge Detection - Improved accuracy for complex black cross patterns</li>
-        <li>Enhanced Preview - Real-time preview of the removed background</li>
-        <li>Improved Processing Speed - Faster background removal for all image sizes</li>
-      </ul>
-      
-      <h3 class="text-xl font-bold my-4">Fixed Issues</h3>
-      <ul class="list-disc pl-5 mb-6">
-        <li>Improved handling of complex black cross patterns</li>
-        <li>Enhanced processing speed for large images</li>
-        <li>Better preservation of fine details</li>
-        <li>Optimized memory usage for faster processing</li>
-      </ul>
-      
-      <p>These improvements were implemented based on user feedback to provide the best possible background removal experience for black cross images.</p>
-    `,
-    description: 'Latest version released: enhanced black cross background removal capabilities',
-    date: '2025-05-28',
-    category: 'Feature Updates',
-    skip: false,
-    cta: "Learn More",
-  },
-  {
-    id: 'background-removal-tutorial',
-    title: 'Quick Guide: Perfect Black Cross Background Removal',
-    content: `
-      <h2 class="text-2xl font-bold mb-4">Complete Guide to Black Cross Background Removal</h2>
-      <p>Follow this simple guide to achieve perfect background removal for your black cross images.</p>
+      <h2 class="text-2xl font-bold mb-4">How to Use Flux Kontext</h2>
+      <p>Learn how to use Flux Kontext to transform your images using text prompts in just a few simple steps.</p>
       
       <h3 class="text-xl font-bold my-4">Step 1: Upload Your Image</h3>
-      <p>Click the upload area or drag and drop your image containing the black cross. For best results, use high-quality images with clear contrast between the black cross and background. Supported formats include JPG and PNG, with a maximum file size of 10MB.</p>
+      <p>Select a single image from your device. For optimal results, choose high-quality images. Supported formats include JPG and PNG.</p>
       
-      <h3 class="text-xl font-bold my-4">Step 2: Process Your Image</h3>
-      <p>Click "Remove Background" to start the process. The system will automatically detect and preserve the black cross while removing the background.</p>
+      <h3 class="text-xl font-bold my-4">Step 2: Write Your Prompt</h3>
+      <p>Describe how you want your image to look. Be specific about the changes you want to make, such as style, mood, or specific elements to add or modify.</p>
       
-      <h3 class="text-xl font-bold my-4">Step 3: Download</h3>
+      <h3 class="text-xl font-bold my-4">Step 3: Generate and Download</h3>
       <p>Once processing is complete, you can:</p>
       <ul class="list-disc pl-5 mb-6">
-        <li>Preview the result with transparent background</li>
-        <li>Download the transparent PNG</li>
+        <li>Preview the transformed image</li>
+        <li>Download your processed image</li>
+        <li>Use your transformed image immediately</li>
       </ul>
       
-      <h3 class="text-xl font-bold my-4">Pro Tips</h3>
+      <h3 class="text-xl font-bold my-4">Best Practices</h3>
       <ul class="list-disc pl-5 mb-6">
-        <li>Ensure good lighting in your original image for best results</li>
-        <li>Save in PNG format to preserve transparency</li>
-        <li>Use the preview feature to check edge quality before finalizing</li>
-        <li>For best results, use images with clear contrast between the black cross and background</li>
+        <li>Use clear and specific prompts</li>
+        <li>Start with high-quality source images</li>
+        <li>Check the preview before finalizing</li>
+        <li>Experiment with different prompt styles</li>
       </ul>
       
-      <p class="mt-6">With these steps, you can achieve professional-quality background removal for your black cross images in minutes.</p>
+      <p class="mt-6">Start creating amazing transformed images with Flux Kontext today!</p>
     `,
-    description: 'Learn how to use our AI tool for perfect black cross background removal',
-    date: '2025-05-28',
+    description: 'Learn how to use Flux Kontext for image transformation with text prompts',
+    date: '2024-03-20',
     category: 'Tutorial',
     skip: false,
-    cta: "Start Learning",
+    cta: "Start Now",
+  },
+  {
+    id: 'flux-kontext-benefits',
+    title: 'Why Choose Flux Kontext for Image Transformation',
+    content: `
+      <h2 class="text-2xl font-bold mb-4">The Flux Kontext Advantage</h2>
+      <p>Discover why Flux Kontext is the preferred choice for AI-powered image transformation, offering a perfect balance of quality and simplicity.</p>
+      
+      <h3 class="text-xl font-bold my-4">Quality-First Approach</h3>
+      <p>By processing one image at a time, Flux Kontext ensures the highest quality results for each transformation. Our AI technology focuses on delivering perfect image edits based on your text prompts.</p>
+      
+      <h3 class="text-xl font-bold my-4">Simple Usage System</h3>
+      <p>No complex credit systems or subscriptions. Flux Kontext offers a straightforward usage-based approach, making it easy to manage your image processing needs.</p>
+      
+      <h3 class="text-xl font-bold my-4">Key Benefits</h3>
+      <ul class="list-disc pl-5 mb-6">
+        <li>Professional-grade transformations</li>
+        <li>Simple one-image-at-a-time processing</li>
+        <li>Clear usage tracking</li>
+        <li>Instant preview and download</li>
+        <li>User-friendly interface</li>
+      </ul>
+      
+      <p>Experience the difference with Flux Kontext - where quality meets simplicity in image transformation.</p>
+    `,
+    description: 'Learn about the benefits of using Flux Kontext for image transformation',
+    date: '2024-03-20',
+    category: 'Product Features',
+    skip: false,
+    cta: "Learn More",
   }
 ]
 

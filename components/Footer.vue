@@ -52,12 +52,12 @@
       <!-- Logo 和描述 -->
       <div class="py-6 border-t border-baby-pink/20">
         <div class="flex flex-col items-center text-center">
-          <img src="/logo.png" alt="Baby Name Generator AI Logo - Smart Name Suggestions" loading="lazy" class="h-16 md:h-24 mb-4">
+          <img src="/logo.png" alt="Flux Kontext - AI Image Editing & Background Removal" loading="lazy" class="h-16 md:h-24 mb-4">
           <p class="text-sm text-gray-700 max-w-xl mb-4">
-            Discover the perfect name for your little one with our AI-powered baby name generator. Get personalized suggestions based on your preferences.
+            Transform your images with Flux Kontext's AI-powered editing tools. Edit images with text prompts, remove backgrounds, and maintain character consistency in your creations.
           </p>
           <div class="flex flex-col items-center gap-2 text-sm text-gray-600">
-            <p>© 2025 Baby name generator ai. All rights reserved.</p>
+            <p>© 2025 Flux Kontext. All rights reserved.</p>
             <div class="flex items-center gap-2">
               <span>Contact:</span>
               <a href="mailto:ceo@ghiblimagicmaker.com" class="hover:text-baby-coral transition-colors">ceo@ghiblimagicmaker.com</a>
@@ -83,7 +83,7 @@ const partnerSites = [
   { url: 'https://www.girlaniai.com', name: 'Cool Anime Girl Wallpapers ' },
   { url: 'https://www.invictgen.com/', name: 'InvinCard' },
   { url: 'https://www.pencilartai.com/', name: ' PencilArtMagic ' },
-  { url: 'https://www.xbgremove.com/', name: 'Erase BG' },
+  { url: 'https://www.kontextimg.com/', name: 'Erase BG' },
   { url: 'https://www.genbabyname.com/', name: 'NamiGenie' },
   // 莱芜
   { url: ' https://www.framepola.com/', name: 'Framepola' },

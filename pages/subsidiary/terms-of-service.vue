@@ -9,22 +9,21 @@
       </NuxtLink>
     </div>
 
-    <h1 class="text-3xl font-bold mb-8">Terms of Service</h1>
+    <h1 class="text-3xl font-bold mb-8">Flux Kontext - Terms of Service</h1>
     
     <div class="space-y-6">
       <section>
         <h2 class="text-2xl font-semibold mb-4">Welcome</h2>
-        <p class="text-gray-700">Welcome to our professional black cross background removal service. By using our services, you agree to these terms. Please read them carefully.</p>
+        <p class="text-gray-700">Welcome to Flux Kontext. By using our services, you agree to these terms. Please read them carefully.</p>
       </section>
 
       <section>
         <h2 class="text-2xl font-semibold mb-4">Service Description</h2>
-        <p class="text-gray-700">We provide a professional black cross background removal service that allows users to easily remove black cross backgrounds from their images. Our service includes the following features:</p>
+        <p class="text-gray-700">We provide AI-powered image processing and context management services that allow users to enhance and manage their content effectively. Our service includes the following features:</p>
         <ul class="list-disc pl-6 mt-4 space-y-2">
-          <li>Black Cross Background Removal: Professional removal of black cross backgrounds from user-uploaded images</li>
-          <li>Multiple Processing Options: Various background removal techniques and image enhancement features</li>
-          <li>Download and Save Processed Images</li>
-          <li>Batch Processing Capability for Black Cross Background Images</li>
+          <li>AI-Powered Image Processing: Advanced image enhancement and processing capabilities</li>
+          <li>Context Management: Intelligent content organization and management</li>
+          <li>Multiple Processing Options: Various AI processing techniques and enhancement features</li>
         </ul>
       </section>
 
@@ -48,17 +47,17 @@
           <li>Circumvent our usage restrictions or access control measures</li>
           <li>Use any automated means to access the service unless specifically permitted</li>
           <li>Engage in activities that may damage the service, user experience, or our infrastructure</li>
-          <li>Resell or redistribute processed images for commercial purposes unless specifically authorized</li>
+          <li>Resell or redistribute processed content for commercial purposes unless specifically authorized</li>
         </ul>
       </section>
 
       <section>
         <h2 class="text-2xl font-semibold mb-4">Generated Content</h2>
-        <p class="text-gray-700">Regarding images processed using our black cross background removal service:</p>
+        <p class="text-gray-700">Regarding content processed using our services:</p>
         <ul class="list-disc pl-6 mt-4 space-y-2">
-          <li>Personal Use: You may use processed images for personal and non-commercial purposes free of charge</li>
+          <li>Personal Use: You may use processed content for personal and non-commercial purposes free of charge</li>
           <li>Commercial Use: Commercial usage requires additional authorization or subscription to the appropriate commercial plan</li>
-          <li>Attribution: We encourage but do not require mentioning our service when using processed images</li>
+          <li>Attribution: We encourage but do not require mentioning our service when using processed content</li>
           <li>Control: We reserve the right to remove any processed content that violates these terms</li>
         </ul>
       </section>
@@ -67,7 +66,7 @@
         <h2 class="text-2xl font-semibold mb-4">Subscriptions and Payments</h2>
         <p class="text-gray-700">We offer subscription plans with the following terms:</p>
         <ul class="list-disc pl-6 mt-4 space-y-2">
-          <li>Free Trial: New users receive two free black cross background removal generations upon registration. After using these free trials, a subscription is required to continue using the service</li>
+          <li>Free Trial: New users receive limited free processing credits upon registration</li>
           <li>Payment Methods: We accept various payment methods, depending on your location</li>
           <li>Subscription Renewal: Subscriptions will automatically renew unless you cancel</li>
           <li>Price Changes: We may change prices, but we will notify existing subscribers in advance</li>
@@ -78,9 +77,9 @@
         <h2 class="text-2xl font-semibold mb-4">Intellectual Property</h2>
         <p class="text-gray-700">Regarding intellectual property rights involved in our service:</p>
         <ul class="list-disc pl-6 mt-4 space-y-2">
-          <li>Service Content: Our website, services, and black cross background removal technology are protected by intellectual property laws</li>
+          <li>Service Content: Our website, services, and AI technology are protected by intellectual property laws</li>
           <li>User Content: You retain all rights to your uploaded content but grant us usage rights to provide the service</li>
-          <li>Processed Content: Usage rights for processed black cross background removal images depend on your subscription plan</li>
+          <li>Processed Content: Usage rights for processed content depend on your subscription plan</li>
           <li>Feedback: Feedback you provide about our service may be freely used by us</li>
         </ul>
       </section>
@@ -90,7 +89,7 @@
         <p class="text-gray-700">Our services are provided "as is" without any warranties of any kind. To the maximum extent permitted by law:</p>
         <ul class="list-disc pl-6 mt-4 space-y-2">
           <li>We are not responsible for service interruptions, delays, or inaccuracies</li>
-          <li>We are not responsible for any consequences that may result from your use of processed black cross background removal images</li>
+          <li>We are not responsible for any consequences that may result from your use of processed content</li>
           <li>Our liability for any damages you may suffer is limited to the amount you have paid to us</li>
         </ul>
       </section>
@@ -99,7 +98,7 @@
         <h2 class="text-2xl font-semibold mb-4">Service Changes and Termination</h2>
         <p class="text-gray-700">We may:</p>
         <ul class="list-disc pl-6 mt-4 space-y-2">
-          <li>Modify, suspend, or terminate any aspect of the black cross background removal service at any time</li>
+          <li>Modify, suspend, or terminate any aspect of the service at any time</li>
           <li>Suspend or terminate your access in case of violation of these terms</li>
           <li>Notify users when significant changes to the service occur</li>
         </ul>
@@ -107,7 +106,7 @@
 
       <section>
         <h2 class="text-2xl font-semibold mb-4">Terms Updates</h2>
-        <p class="text-gray-700">We may update these Terms of Service from time to time. Significant changes will be communicated via email or in-service notifications. Continued use of our black cross background removal service after such changes indicates your acceptance of the modified terms.</p>
+        <p class="text-gray-700">We may update these Terms of Service from time to time. Significant changes will be communicated via email or in-service notifications. Continued use of our service after such changes indicates your acceptance of the modified terms.</p>
       </section>
 
       <section>
@@ -131,11 +130,10 @@ definePageMeta({
   name: 'terms-of-service'
 })
 
-
 useHead({
-  title: 'Black Cross Background Remover | Terms of Service & Usage Rules',
+  title: 'Flux Kontext | Terms of Service',
   meta: [
-    { name: 'description', content: 'Professional Black Cross Background Removal Service Terms: Learn about our AI-powered background removal service, account usage, image processing rights, and commercial usage terms.' },
+    { name: 'description', content: 'Flux Kontext Terms of Service: Learn about our AI-powered image processing and context management services, account usage, content rights, and commercial usage terms.' },
   ],
   link: [{ rel: 'canonical', href: `${baseUrl}/subsidiary/terms-of-service` }]
 })

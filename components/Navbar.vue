@@ -9,7 +9,7 @@
           <!-- Logo -->
           <div class="flex items-center gap-2">
             <NuxtLink to="/">
-              <img src="/logo.png" alt="Baby Name Generator AI Logo - Find Perfect Baby Names" class="h-16" loading="lazy" />
+              <img src="/logo.png" alt="Flux Kontext - AI Image Editing & Background Removal" class="h-16" loading="lazy" />
             </NuxtLink>
           </div>
 

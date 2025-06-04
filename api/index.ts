@@ -12,7 +12,7 @@ console.log('当前baseUrl:', baseUrl);
 const urlList = {
   setUserInfo: baseUrl + '/api/user/auth',        // 设置用户信息
   getCurrentUser: baseUrl + '/api/user/info',   // 获取当前用户信息
-  createTasks: baseUrl + '/api/task/chat/baby_name',     // 创建任务
+  createTasks: baseUrl + '/api/task/flux/create',     // 创建任务
   getSubPlans: baseUrl + '/api/website/priceList',     // 获取套餐信息
   payOrder: baseUrl + '/api/pay/stripe',  // 支付
   opusList: baseUrl + '/api/user/opus_list' // 获取用户作品列表
@@ -321,7 +321,7 @@ const createFormData = (data: Record<string, any>) => {
 const createHeaders = () => {
   const token = getValidToken();
   return {
-    'x-appid': String(useRuntimeConfig().public.appid)||'cy467b1b042e1f9efe',
+    'x-appid': useRuntimeConfig().public.appid,
     ...(token ? { 'Authorization': `Bearer ${token}` } : {})
   };
 }
