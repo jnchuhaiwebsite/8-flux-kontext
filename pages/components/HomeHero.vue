@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full relative flex items-center justify-center py-20 overflow-hidden">
+  <div class="w-full min-h-[700px] relative flex items-center justify-center py-20 overflow-hidden">
     <!-- 炫酷背景 -->
     <div class="absolute inset-0 -z-10">
       <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-500"></div>
@@ -70,33 +70,33 @@
       </div>
 
       <!-- 表单区域 -->
-      <div v-else class="bg-white/20 backdrop-blur-xl rounded-3xl shadow-2xl p-8">
+      <div v-else class="bg-white rounded-3xl shadow-2xl p-6 max-w-5xl mx-auto">
         <div class="flex flex-col md:flex-row w-full">
           <!-- 左侧上传区 -->
-          <div class="w-full md:w-2/5 p-8 flex flex-col gap-6 border-b md:border-b-0 md:border-r border-gray-200/20">
-            <h2 class="text-2xl font-bold text-gray-800 mb-2">Flux Kontext</h2>
-            <p class="text-gray-500 text-sm mb-4">AI Image Generation & Editing with Character Consistency</p>
+          <div class="w-full md:w-2/5 p-6 flex flex-col gap-4 border-b md:border-b-0 md:border-r border-gray-200/20">
+            <h2 class="text-xl font-bold text-gray-800">Flux Kontext</h2>
+            <p class="text-gray-500 text-xs mb-2">AI Image Generation & Editing with Character Consistency</p>
 
-            <div class="text-gray-800 text-sm">
+            <div class="text-gray-800 text-xs">
               <p>Image (Optional)</p>
               <p class="text-gray-500">Upload Image(s)</p>
             </div>
 
             <!-- 上传图片 -->
             <div
-              class="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 py-8 mb-4 cursor-pointer transition hover:border-blue-400 relative min-h-[200px] min-w-[200px]"
+              class="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 py-6 mb-3 cursor-pointer transition hover:border-blue-400 relative min-h-[160px] min-w-[160px]"
               @click="handleUploadAreaClick"
             >
               <!-- 已经上传图片 -->
               <template v-if="uploadImg">
-                <nuxt-img :src="uploadImg" alt="预览" class="w-80 max-h-60 object-contain rounded-lg" />
+                <nuxt-img :src="uploadImg" alt="预览" class="w-64 max-h-48 object-contain rounded-lg" />
                 <!-- 右上角叉号 -->
                 <button
                   class="absolute top-2 right-2 bg-white bg-opacity-80 rounded-full p-1 shadow hover:bg-red-100 transition"
                   @click.stop="removeImage"
                   type="button"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-500 hover:text-red-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-gray-500 hover:text-red-500">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
@@ -105,8 +105,8 @@
               <!-- 没有上传图片 -->
               <template v-else>
                 <!-- Heroicons 图片图标 -->
-                <PhotoIcon class="w-12 h-12 text-gray-400 mb-2" />
-                <span class="text-gray-400 text-sm">
+                <PhotoIcon class="w-10 h-10 text-gray-400 mb-1" />
+                <span class="text-gray-400 text-xs">
                   Drag & drop or 
                   <span class="text-blue-500 cursor-pointer underline" @click.stop="() => fileInputRef?.click()">browse</span>
                 </span>
@@ -117,12 +117,12 @@
             <!-- Prompt输入框 -->
             <textarea class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none" rows="2" placeholder="Describe how your image should look like..."></textarea>
             <!-- 尺寸选择 -->
-            <div class="flex flex-wrap gap-2 mt-2">
+            <div class="flex flex-wrap gap-2 mt-1">
               <button
                 v-for="item in ratios"
                 :key="item.value"
                 :class="[
-                  'flex items-center gap-1 px-3 py-1 rounded-lg border text-xs font-semibold transition',
+                  'flex items-center gap-1 px-2 py-1 rounded-lg border text-xs font-semibold transition',
                   selectedRatio === item.value
                     ? 'border-blue-500 bg-blue-50 text-blue-600 shadow'
                     : 'border-gray-200 text-gray-600 bg-white hover:border-blue-300',
@@ -131,18 +131,18 @@
                 type="button"
               >
                 <!-- 比例方框图标 -->
-                <svg v-if="item.icon" :width="20" :height="20" viewBox="0 0 20 20" fill="none" class="flex items-center">
+                <svg v-if="item.icon" :width="16" :height="16" viewBox="0 0 20 20" fill="none" class="flex items-center">
                   <rect x="3" y="3" :width="item.icon.w" :height="item.icon.h" rx="3" :stroke="selectedRatio === item.value ? '#3B82F6' : '#A1A1AA'" stroke-width="2" />
                 </svg>
                 <span>{{ item.label }}</span>
               </button>
             </div>
             <!-- 生成按钮 -->
-            <button class="mt-6 w-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold py-2 rounded-xl shadow hover:from-blue-600 hover:to-cyan-600 transition">Generate <span class="ml-1 text-xs">5 Credits</span></button>
+            <button class="mt-4 w-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold py-2 rounded-xl shadow hover:from-blue-600 hover:to-cyan-600 transition">Generate <span class="ml-1 text-xs">5 Credits</span></button>
           </div>
 
           <!-- 右侧图片对比区 -->
-          <div class="w-full md:w-3/5 p-8 flex flex-col items-center justify-center relative">
+          <div class="w-full md:w-3/5 p-6 flex flex-col items-center justify-center relative">
             <!-- 加载状态 -->
             <div v-if="isProcessing" class="w-full aspect-square rounded-2xl overflow-hidden bg-gray-100 shadow-lg flex items-center justify-center">
               <div class="flex flex-col items-center gap-4">

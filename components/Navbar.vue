@@ -2,7 +2,7 @@
   <header>
     <nav
       class="fixed top-0 left-0 w-full z-50 backdrop-blur-md shadow-md"
-      style="background: rgba(255, 255, 255, 0.6)"
+      style="background: rgba(255, 255, 255, 0.7)"
     >
       <div class="max-w-5xl mx-auto px-4">
         <div class="flex items-center justify-between h-16">

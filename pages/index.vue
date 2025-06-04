@@ -4,7 +4,7 @@
       <!-- 首屏区块 -->
       <section
         id="hero"
-        class="h-[700px] relative pt-[64px]"
+        class="min-h-[700px] relative pt-[64px]"
       >
         <HomeHero />
       </section>

@@ -17,6 +17,8 @@ export function useSeo(options: SeoOptions) {
   const url = useRequestURL()
   const baseUrl = url.origin
   const fullUrl = `${baseUrl}${url.pathname}`
+  // 去除最后面的斜杠
+  const fullUrlWithoutSlash = fullUrl.replace(/\/$/, '')
   
   // 确保标题不超过60个字符
   const title = options.title.length > 60 ? options.title.substring(0, 57) + '...' : options.title
@@ -50,7 +52,7 @@ export function useSeo(options: SeoOptions) {
         content: options.ogDescription || description,
       },
       { property: 'og:type', content: options.ogType || 'website' },
-      { property: 'og:url', content: fullUrl },
+      { property: 'og:url', content: fullUrlWithoutSlash },
       { property: 'og:image', content: options.ogImage || `${baseUrl}/logo.png` },
       { property: 'og:site_name', content: 'baby name generator ai' },
       ...(options.other || []),
@@ -67,6 +69,6 @@ export function useSeo(options: SeoOptions) {
       },
       { name: 'twitter:image', content: options.twitterImage || `${baseUrl}/logo.png` },
     ],
-    link: [{ rel: 'canonical', href: fullUrl }],
+    link: [{ rel: 'canonical', href: fullUrlWithoutSlash }],
   })
 } 
