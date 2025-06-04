@@ -4,7 +4,7 @@
       <!-- 首屏区块 -->
       <section
         id="hero"
-        class="hero-gradient-bg flex flex-col items-center justify-center min-h-[600px] relative pt-32"
+        class="h-[700px] relative pt-[64px]"
       >
         <HomeHero />
       </section>
@@ -41,12 +41,12 @@ import { useToast } from '~/composables/useToast';
 const { toast, showToast } = useToast();
 
 useSeo({
-  title: "Flux Kontext - AI Image Editing & Background Removal",
-  description: "Transform your images with Flux Kontext's AI-powered editing tools. Remove backgrounds, edit images with text prompts, and maintain character consistency in your creations.",
-  ogTitle: "Flux Kontext - AI Image Editing & Background Removal",
-  ogDescription: "Transform your images with Flux Kontext's AI-powered editing tools. Remove backgrounds, edit images with text prompts, and maintain character consistency in your creations.",
-  twitterTitle: "Flux Kontext - AI Image Editing & Background Removal",
-  twitterDescription: "Transform your images with Flux Kontext's AI-powered editing tools. Remove backgrounds, edit images with text prompts, and maintain character consistency in your creations."
+  title: "Flux Kontext - AI Image Generation & Editing Platform",
+  description: "Transform images with Flux Kontext's AI tools. Generate and edit using text and image prompts, featuring character consistency and precise object modification.",
+  ogTitle: "Flux Kontext - AI Image Generation & Editing Platform",
+  ogDescription: "Transform images with Flux Kontext's AI tools. Generate and edit using text and image prompts, featuring character consistency and precise object modification.",
+  twitterTitle: "Flux Kontext - AI Image Generation & Editing Platform",
+  twitterDescription: "Transform images with Flux Kontext's AI tools. Generate and edit using text and image prompts, featuring character consistency and precise object modification."
 });
 
 // 处理支付回调
@@ -73,8 +73,7 @@ onBeforeMount(() => {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: "Flux Kontext",
-    description:
-      "Professional AI image editing platform. Edit images with text prompts, remove backgrounds, and maintain character consistency with our advanced AI technology.",
+    description: "Advanced contextual image generation and editing AI platform that combines text and image prompts for precise control and consistent results.",
     applicationCategory: "ImageEditingApplication",
     operatingSystem: "All",
     offers: {
@@ -82,6 +81,20 @@ onBeforeMount(() => {
       price: "0",
       priceCurrency: "USD",
     },
+    featureList: [
+      "Character consistency",
+      "Precise object modification",
+      "Local repainting",
+      "Text replacement",
+      "Style transfer",
+      "Background changes",
+      "Fast inference",
+      "Composition control"
+    ],
+    screenshot: "/logo.png",
+    applicationSubCategory: "AI Image Generation",
+    browserRequirements: "Requires JavaScript. Requires HTML5.",
+    softwareVersion: "1.0.0"
   };
   // 添加结构化数据到页面头部
   const script = document.createElement("script");
@@ -92,10 +105,6 @@ onBeforeMount(() => {
 </script>
 
 <style scoped>
-.hero-gradient-bg {
-  background: linear-gradient(135deg, #fef2e8 0%, #e8ecff 50%, #faf0ff 100%);
-}
-
 html {
   font-size: 18px;
 }

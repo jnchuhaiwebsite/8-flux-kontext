@@ -27,11 +27,25 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en' // 设置 HTML 语言
       },
-      title: 'Flux Kontext - Intelligent Context Management System', // Website title
+      title: 'Flux Kontext - Advanced Contextual Image Generation & Editing AI', // Website title
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' },
-        { name: 'description', content: 'Flux Kontext - Professional intelligent context management system that helps you better manage and optimize workflows, enhancing team collaboration efficiency.' }, // Website description
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: 'https://www.kontextimg.com' },
+        { property: 'og:image', content: '/logo.png' },
+        { property: 'og:site_name', content: 'Flux Kontext' },
+        { property: 'og:locale', content: 'en_US' },
+        // Twitter Card tags
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: 'Flux Kontext - Advanced Contextual Image Generation & Editing AI' },
+        { name: 'twitter:description', content: 'Revolutionary AI image generation and editing model with contextual understanding and precise control' },
+        { name: 'twitter:image', content: '/logo.png' },
+        { name: 'twitter:site', content: '@fluxkontext' },
+        // Additional SEO tags
+        { name: 'robots', content: 'index, follow' },
+        { name: 'author', content: 'Flux Kontext Team' },
+        { name: 'application-name', content: 'Flux Kontext' },
       ],
       link: [
         { rel: 'canonical', href: 'https://www.kontextimg.com' }, // 规范链接
@@ -51,7 +65,7 @@ export default defineNuxtConfig({
     },
     devProxy: {
       '/nuxtRequest': {
-        target: process.env.NUXT_PUBLIC_API_BASE || 'https://cfart.xbgremove.com', // 从环境变量获取代理目标
+        target: process.env.NUXT_PUBLIC_API_BASE, // 从环境变量获取代理目标
         changeOrigin: true, // 允许跨域
         prependPath: false // 不添加代理路径前缀
       }

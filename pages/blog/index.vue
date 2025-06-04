@@ -63,12 +63,12 @@ import { useBlogPosts } from '~/composables/useBlogPosts'
 import { useSeo } from '~/composables/useSeo'
 
 useSeo({
-  title: "Flux Kontext Blog - AI Image Editing Tutorials & Tips",
-  description: "Explore Flux Kontext's AI image editing features: learn professional image processing techniques, get creative inspiration, and stay updated with the latest features.",
-  ogTitle: "Flux Kontext Blog - AI Image Editing Tutorials & Tips",
-  ogDescription: "Explore Flux Kontext's AI image editing features: learn professional image processing techniques, get creative inspiration, and stay updated with the latest features.",
-  twitterTitle: "Flux Kontext Blog - AI Image Editing Tutorials & Tips",
-  twitterDescription: "Explore Flux Kontext's AI image editing features: learn professional image processing techniques, get creative inspiration, and stay updated with the latest features."
+  title: "Flux Kontext Blog - AI Image Generation & Tips",
+  description: "Discover AI image generation insights, tutorials, and tips. Learn about character consistency, object modification, and style transfer through our expert guides.",
+  ogTitle: "Flux Kontext Blog - AI Image Generation & Tips",
+  ogDescription: "Discover AI image generation insights, tutorials, and tips. Learn about character consistency, object modification, and style transfer through our expert guides.",
+  twitterTitle: "Flux Kontext Blog - AI Image Generation & Tips",
+  twitterDescription: "Discover AI image generation insights, tutorials, and tips. Learn about character consistency, object modification, and style transfer through our expert guides."
 });
 
 // Use blog posts data
@@ -81,8 +81,38 @@ const {
 
 // Set canonical URL when mounted
 onMounted(() => {
-  
-})
+  // 添加结构化数据
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: "Flux Kontext Blog",
+    description: "Expert tutorials and insights on AI image generation and editing",
+    url: "https://www.kontextimg.com/blog",
+    publisher: {
+      "@type": "Organization",
+      name: "Flux Kontext",
+      logo: {
+        "@type": "ImageObject",
+        url: "/logo.png"
+      }
+    },
+    blogPost: filteredPosts.value.map(post => ({
+      "@type": "BlogPosting",
+      headline: post.title,
+      description: post.description,
+      datePublished: post.date,
+      author: {
+        "@type": "Organization",
+        name: "Flux Kontext Team"
+      }
+    }))
+  };
+
+  const script = document.createElement("script");
+  script.type = "application/ld+json";
+  script.textContent = JSON.stringify(structuredData);
+  document.head.appendChild(script);
+});
 </script>
 
 <style>
