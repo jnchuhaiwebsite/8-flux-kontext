@@ -4,7 +4,7 @@
       <!-- 左侧上传区 -->
       <div class="w-full md:w-2/5 p-8 flex flex-col gap-6 border-b md:border-b-0 md:border-r border-gray-100">
         <h2 class="text-2xl font-bold text-gray-800 mb-2">Flux Kontext</h2>
-        <p class="text-gray-500 text-sm mb-4">AI Image Editing & Background Removal with Character Consistency</p>
+        <p class="text-gray-500 text-sm mb-4">AI Image Generation & Editing with Character Consistency</p>
 
         <div class="text-gray-800 text-sm">
           <p>Image (Optional)</p>
