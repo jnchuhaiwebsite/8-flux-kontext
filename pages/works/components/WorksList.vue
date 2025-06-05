@@ -138,6 +138,11 @@ import { ref, onMounted } from 'vue'
 import { getOpusList } from '~/api'
 import { useToast } from '~/composables/useToast'
 import Toast from '~/components/Toast.vue'
+import { useClerkAuth } from '~/utils/auth'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const { isSignedIn } = useClerkAuth()
 
 const { toast, showToast } = useToast()
 
@@ -288,6 +293,11 @@ const handleCopyPrompt = (prompt: string) => {
 }
 
 onMounted(() => {
+  // 检查登录状态
+  if (!isSignedIn.value) {
+    router.push('/')
+    return
+  }
   fetchWorks(1)
 })
 </script>
