@@ -72,6 +72,9 @@ const { getPostById, allPosts } = useBlogPosts();
 //获取文章内容
 const post = computed(() => {
   const postId = route.params.id as string;
+  if(!postId) {
+    return null;
+  }
   try {
     const foundPost = getPostById(postId);
     if (!foundPost) {
@@ -112,11 +115,7 @@ const title = computed(() => {
 useSeo({
   title: title.value,
   description: metaDescription.value,
-  ogTitle: title.value,
-  ogDescription: metaDescription.value,
   ogType: 'article',
-  twitterTitle: title.value,
-  twitterDescription: metaDescription.value,
   other: [
     { property: 'article:published_time', content: post.value?.date || '' },//文章发布时间
     { property: 'article:section', content: post.value?.category || '' },//文章分类

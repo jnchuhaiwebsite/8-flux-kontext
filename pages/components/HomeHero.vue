@@ -11,10 +11,10 @@
       <!-- 网格背景 -->
       <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:50px_50px]">
         <!-- 鼠标跟随效果 -->
-        <div class="mouse-follower-container">
-          <div class="mouse-follower"></div>
-          <div class="mouse-follower mouse-follower-2"></div>
-          <div class="mouse-follower mouse-follower-3"></div>
+        <div id="mouse-follower-container" class="absolute inset-0 pointer-events-none overflow-hidden">
+          <div id="mouse-follower-1" class="absolute w-5 h-5 bg-blue-400/60 rounded-full pointer-events-none transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-100 ease-in-out mix-blend-screen shadow-[0_0_10px_rgba(96,165,250,0.3)] opacity-0"></div>
+          <div id="mouse-follower-2" class="absolute w-10 h-10 bg-blue-500/30 rounded-full pointer-events-none transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-150 ease-in-out mix-blend-screen shadow-[0_0_15px_rgba(59,130,246,0.2)] opacity-0"></div>
+          <div id="mouse-follower-3" class="absolute w-[60px] h-[60px] bg-blue-600/10 rounded-full pointer-events-none transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-200 ease-in-out mix-blend-screen shadow-[0_0_20px_rgba(37,99,235,0.1)] opacity-0"></div>
         </div>
       </div>
     </div>
@@ -46,6 +46,14 @@
               <div class="w-2 h-2 rounded-full bg-blue-200"></div>
               <p>Professional-grade image editing tools</p>
             </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 rounded-full bg-indigo-200"></div>
+              <p>Advanced style transfer capabilities</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 rounded-full bg-purple-200"></div>
+              <p>High-resolution output support</p>
+            </div>
           </div>
 
           <button 
@@ -61,7 +69,7 @@
           <div class="relative">
             <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-3xl transform rotate-6 scale-105 opacity-30"></div>
             <img 
-              src="/logo.png" 
+              src="/img/1.png" 
               alt="Demo Preview" 
               class="relative rounded-3xl shadow-2xl transform -rotate-6 hover:rotate-0 transition-all duration-500 hover:scale-105 bg-white/20 backdrop-blur-sm p-4"
             />
@@ -70,10 +78,10 @@
       </div>
 
       <!-- 表单区域 -->
-      <div v-else class="bg-white rounded-3xl shadow-2xl p-2 max-w-5xl mx-auto relative">
+      <div v-else class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-2 max-w-6xl mx-auto relative">
         <!-- 返回按钮 -->
         <button 
-          @click="showForm = false"
+          @click="handleBack"
           class="absolute left-0 -top-10 flex items-center gap-2 text-white hover:text-blue-200 transition-colors"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
@@ -83,31 +91,37 @@
         </button>
         <div class="flex flex-col md:flex-row w-full">
           <!-- 左侧上传区 -->
-          <div class="w-full md:w-2/5 p-6 flex flex-col gap-4 border-b md:border-b-0 md:border-r border-gray-200/20">
-            <h2 class="text-3xl font-bold text-gray-800">Flux Kontext</h2>
-            <p class="text-gray-500 text-base mb-4">AI Image Generation & Editing with Character Consistency</p>
+          <div class="w-full md:w-1/3 p-4 flex flex-col gap-3 border-b md:border-b-0 md:border-r border-gray-200/20">
+            <h2 class="text-2xl font-bold text-gray-800">Flux Kontext</h2>
+            <p class="text-gray-500 text-sm mb-2">AI Image Generation & Editing with Character Consistency</p>
 
             <div class="text-gray-800 text-sm">
               <p>Image (Optional)</p>
-              <p class="text-gray-500">Upload Image(s)</p>
             </div>
 
             <!-- 上传图片 -->
             <div
-              class="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 py-6 mb-3 cursor-pointer transition hover:border-blue-400 relative min-h-[160px] min-w-[160px]"
+              class="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 py-4 mb-2 cursor-pointer transition hover:border-blue-400 relative h-[140px] w-full"
               @click="handleUploadAreaClick"
+              @dragenter.prevent="handleDragEnter"
+              @dragover.prevent="handleDragOver"
+              @dragleave.prevent="handleDragLeave"
+              @drop.prevent="handleDrop"
+              :class="{ 'border-blue-400 bg-blue-50': isDragging }"
             >
               <!-- 已经上传图片 -->
               <template v-if="uploadImg">
-                <nuxt-img :src="uploadImg" alt="预览" class="w-64 max-h-48 object-contain rounded-lg" />
-                <!-- 右上角叉号 -->
-                <button
-                  class="absolute top-2 right-2 bg-white bg-opacity-80 rounded-full p-1 shadow hover:bg-red-100 transition"
-                  @click.stop="removeImage"
-                  type="button"
-                >
-                  <XMarkIcon class="w-4 h-4 text-gray-500 hover:text-red-500" />
-                </button>
+                <div class="relative w-full h-full flex items-center justify-center">
+                  <nuxt-img :src="uploadImg" alt="预览" class="max-h-[120px] max-w-full object-contain rounded-lg" />
+                  <!-- 右上角叉号 -->
+                  <button
+                    class="absolute -top-2 right-2 bg-gray-300 bg-opacity-80 rounded-full p-1 shadow hover:bg-red-100 transition"
+                    @click.stop="removeImage"
+                    type="button"
+                  >
+                    <XMarkIcon class="w-4 h-4 text-gray-500 hover:text-red-500" />
+                  </button>
+                </div>
               </template>
 
               <!-- 没有上传图片 -->
@@ -118,31 +132,69 @@
                   Drag & drop or 
                   <span class="text-blue-500 cursor-pointer underline" @click.stop="() => fileInputRef?.click()">browse</span>
                 </span>
-                <span class="text-gray-300 text-sm mt-1">PNG, JPG, JPEG or WEBP (max: 10MB)</span>
+                <span class="text-gray-300 text-sm mt-1">PNG, JPG, JPEG or WEBP (max: 5MB)</span>
               </template>
               <input type="file" accept="image/*" class="hidden" ref="fileInputRef" @change="onFileChange" />
             </div>
             <!-- Prompt输入框 -->
-            <textarea v-model="prompt" class="w-full border border-gray-200 rounded-lg px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none" rows="3" placeholder="Describe how your image should look like..."></textarea>
+            <textarea 
+              v-model="prompt" 
+              class="w-full bg-white/80 backdrop-blur-sm border border-gray-200 rounded-lg px-4 py-3 text-md focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none" 
+              rows="3" 
+              placeholder="Describe how your image should look like..."
+              maxlength="400"
+            ></textarea>
+            <div class="text-right text-sm text-gray-500">{{ prompt.length }}/400</div>
             <!-- 尺寸选择 -->
-            <div class="flex flex-wrap gap-2 mt-1">
+            <div class="space-y-2">
+              <div class="flex flex-wrap gap-2">
+                <button
+                  v-for="item in showMoreRatios ? ratios : defaultRatios"
+                  :key="item.value"
+                  :class="[
+                    'flex flex-col items-center justify-center gap-0.5 px-1 py-1 rounded-lg border text-xs font-semibold transition w-[45px] h-[45px]',
+                    selectedRatio === item.value
+                      ? 'border-blue-500 bg-blue-50 text-blue-600 shadow'
+                      : 'border-gray-200 text-gray-600 bg-white hover:border-blue-300',
+                  ]"
+                  @click="() => selectRatio(item.value)"
+                  type="button"
+                >
+                  <!-- 比例方框图标 -->
+                  <svg v-if="item.icon" :width="20" :height="20" viewBox="0 0 24 24" fill="none" class="flex items-center justify-center">
+                    <rect 
+                      :x="(24 - item.icon.w) / 2" 
+                      :y="(24 - item.icon.h) / 2" 
+                      :width="item.icon.w" 
+                      :height="item.icon.h" 
+                      rx="2" 
+                      :stroke="selectedRatio === item.value ? '#3B82F6' : '#A1A1AA'" 
+                      stroke-width="2"
+                      :stroke-dasharray="item.value === 'match_input_image' ? '2 2' : 'none'"
+                    />
+                  </svg>
+                  <span class="text-xs">{{ item.label }}</span>
+                </button>
+              </div>
               <button
-                v-for="item in ratios"
-                :key="item.value"
-                :class="[
-                  'flex items-center gap-1 px-2 py-1 rounded-lg border text-xs font-semibold transition',
-                  selectedRatio === item.value
-                    ? 'border-blue-500 bg-blue-50 text-blue-600 shadow'
-                    : 'border-gray-200 text-gray-600 bg-white hover:border-blue-300',
-                ]"
-                @click="() => selectRatio(item.value)"
-                type="button"
+                v-if="!showMoreRatios"
+                @click="showMoreRatios = true"
+                class="w-full py-2 text-sm text-blue-500 hover:text-blue-600 font-medium flex items-center justify-center gap-1"
               >
-                <!-- 比例方框图标 -->
-                <svg v-if="item.icon" :width="16" :height="16" viewBox="0 0 20 20" fill="none" class="flex items-center">
-                  <rect x="3" y="3" :width="item.icon.w" :height="item.icon.h" rx="3" :stroke="selectedRatio === item.value ? '#3B82F6' : '#A1A1AA'" stroke-width="2" />
+                <span>More Options</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                 </svg>
-                <span>{{ item.label }}</span>
+              </button>
+              <button
+                v-else
+                @click="showMoreRatios = false"
+                class="w-full py-2 text-sm text-blue-500 hover:text-blue-600 font-medium flex items-center justify-center gap-1"
+              >
+                <span>Show Less</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                </svg>
               </button>
             </div>
             <!-- 生成按钮 -->
@@ -150,18 +202,25 @@
           </div>
 
           <!-- 右侧图片对比区 -->
-          <div class="w-full md:w-3/5 p-6 flex flex-col items-center justify-center relative">
+          <div class="w-full md:w-2/3 p-4 flex flex-col items-center relative">
+            <!-- 标题和说明文字 -->
+            <div class="w-full text-left mb-3">
+              <h2 class="text-lg font-bold text-gray-800 mb-1">Flux Kontext Result</h2>
+              <p class="text-sm text-gray-600">The modified image results will appear here.</p>
+              <p class="text-xs text-gray-500 mt-1">Result Time: 5s - 20s</p>
+            </div>
+
             <!-- 加载状态 -->
-            <div v-if="isProcessing" class="w-full aspect-square rounded-2xl overflow-hidden bg-gray-100 shadow-lg flex items-center justify-center">
-              <div class="flex flex-col items-center gap-4">
-                <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-                <span class="text-gray-600">Processing your image...</span>
+            <div v-if="isProcessing" class="w-full aspect-[3/2] rounded-2xl overflow-hidden bg-gray-100 shadow-lg flex items-center justify-center">
+              <div class="flex flex-col items-center gap-3">
+                <div class="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                <span class="text-gray-600 text-sm">Processing your image...</span>
               </div>
             </div>
 
             <!-- 结果展示区域 -->
-            <div v-else-if="generatedImage" class="w-full flex flex-col items-center gap-6">
-              <div class="w-full aspect-square rounded-2xl overflow-hidden bg-gray-100 shadow-lg relative p-4">
+            <div v-else-if="generatedImage" class="w-full flex flex-col items-center gap-4">
+              <div class="w-full aspect-[3/2] rounded-2xl overflow-hidden bg-gray-100 shadow-lg relative p-3">
                 <div v-if="isImageLoading" class="absolute inset-0 flex items-center justify-center bg-gray-100">
                   <div class="flex flex-col items-center gap-4">
                     <ArrowPathIcon class="w-12 h-12 text-blue-500 animate-spin" />
@@ -192,6 +251,7 @@
               v-else
               :before-image="originImg"
               :after-image="resultImg"
+              class="aspect-[3/2]"
             />
           </div>
         </div>
@@ -233,10 +293,10 @@ const userStore = useUserStore()
 const userInfo = computed(() => userStore.userInfo)
 const remainingTimes = ref(userStore.userInfo?.free_limit+userStore.userInfo?.remaining_limit|| 0)
 
-// 示例-结果图片
-const resultImg = ref('https://images.unsplash.com/photo-1554629947-334ff61d85dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1024&h=1280&q=80')
 // 示例-原始图片
-const originImg = ref('/logo.png')
+const originImg = ref('/img/5_before.png')
+// 示例-结果图片
+const resultImg = ref('/img/5_after.png')
 
 // 上传的图片
 const uploadImg = ref('')
@@ -250,12 +310,25 @@ const isImageLoading = ref(false)
 
 // 比例选项
 const ratios = [
-  { label: 'Match Input', value: 'match_input_image', icon: { w: 14, h: 14 } },
-  { label: '2:3', value: '2:3', icon: { w: 10, h: 15 } },
-  { label: '3:2', value: '3:2', icon: { w: 15, h: 10 } },
+  { label: 'Match Input', value: 'match_input_image', icon: { w: 22, h: 22 } },
   { label: '1:1', value: '1:1', icon: { w: 14, h: 14 } },
-  { label: '16:9', value: '16:9', icon: { w: 16, h: 9 } }
+  { label: '4:3', value: '4:3', icon: { w: 12, h: 9 } },
+  { label: '3:4', value: '3:4', icon: { w: 9, h: 12 } },
+  { label: '16:9', value: '16:9', icon: { w: 16, h: 9 } },
+  { label: '9:16', value: '9:16', icon: { w: 9, h: 16 } },
+  { label: '3:2', value: '3:2', icon: { w: 15, h: 10 } },
+  { label: '2:3', value: '2:3', icon: { w: 10, h: 15 } },
+  { label: '4:5', value: '4:5', icon: { w: 12, h: 15 } },
+  { label: '5:4', value: '5:4', icon: { w: 15, h: 12 } },
+  { label: '21:9', value: '21:9', icon: { w: 21, h: 9 } },
+  { label: '9:21', value: '9:21', icon: { w: 9, h: 21 } },
+  { label: '2:1', value: '2:1', icon: { w: 16, h: 8 } },
+  { label: '1:2', value: '1:2', icon: { w: 8, h: 16 } }
 ]
+
+// 默认显示的比例选项
+const defaultRatios = ratios.slice(0, 6)
+const showMoreRatios = ref(false)
 const selectedRatio = ref('match_input_image')
 const selectRatio = (val: string) => {
   selectedRatio.value = val
@@ -277,7 +350,6 @@ const removeImage = () => {
 
 // 添加登录状态检查方法
 const checkLoginStatus = async () => {
-  debugger
   if (!userInfo.value) {
     showToast('Please login first to use this feature', 'error')
     // 使用 id 选择器获取登录按钮
@@ -310,8 +382,12 @@ watch(
 
 onMounted(() => {
   // 添加鼠标跟随效果
-  const container = document.querySelector('.mouse-follower-container')
-  const followers = document.querySelectorAll('.mouse-follower')
+  const container = document.getElementById('mouse-follower-container')
+  const followers = [
+    document.getElementById('mouse-follower-1'),
+    document.getElementById('mouse-follower-2'),
+    document.getElementById('mouse-follower-3')
+  ]
   
   const handleMouseMove = (e: MouseEvent) => {
     if (!container) return
@@ -358,6 +434,12 @@ const handleUpload = async (file: File) => {
     return
   }
   
+  // 检查文件大小
+  if (file.size > 5 * 1024 * 1024) {
+    showToast('File size should not exceed 5MB', 'error')
+    return
+  }
+  
   // 保存文件引用
   uploadFile.value = file
   // 创建预览URL
@@ -377,6 +459,11 @@ const handleSubmit = async () => {
     if (promptInput) {
       promptInput.focus()
     }
+    return
+  }
+  
+  if (prompt.value.length > 400) {
+    showToast('Prompt should not exceed 400 characters', 'error')
     return
   }
 
@@ -460,56 +547,53 @@ watch(generatedImage, (newUrl) => {
     isImageLoading.value = true
   }
 })
+
+// 在 script setup 部分添加 handleBack 函数
+const handleBack = () => {
+  showForm.value = false
+  // 清空表单数据
+  prompt.value = ''
+  uploadImg.value = ''
+  uploadFile.value = null
+  if (fileInputRef.value) fileInputRef.value.value = ''
+  selectedRatio.value = 'match_input_image'
+  // 清空结果
+  generatedImage.value = ''
+  isProcessing.value = false
+  isImageLoading.value = false
+  isDownloading.value = false
+}
+
+// 拖拽状态
+const isDragging = ref(false)
+
+// 处理拖拽进入
+const handleDragEnter = (e: DragEvent) => {
+  isDragging.value = true
+}
+
+// 处理拖拽悬停
+const handleDragOver = (e: DragEvent) => {
+  e.preventDefault()
+}
+
+// 处理拖拽离开
+const handleDragLeave = (e: DragEvent) => {
+  isDragging.value = false
+}
+
+// 处理文件拖放
+const handleDrop = async (e: DragEvent) => {
+  isDragging.value = false
+  const files = e.dataTransfer?.files
+  if (files && files[0]) {
+    handleUpload(files[0])
+  }
+}
 </script>
 
 <style scoped>
-.mouse-follower-container {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.mouse-follower {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: rgba(96, 165, 250, 0.6);
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s ease;
-  mix-blend-mode: screen;
-  box-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
-  opacity: 0;
-}
-
-.mouse-follower-2 {
-  width: 40px;
-  height: 40px;
-  background: rgba(59, 130, 246, 0.3);
-  transition: transform 0.15s ease;
-  mix-blend-mode: screen;
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
-}
-
-.mouse-follower-3 {
-  width: 60px;
-  height: 60px;
-  background: rgba(37, 99, 235, 0.1);
-  transition: transform 0.2s ease;
-  mix-blend-mode: screen;
-  box-shadow: 0 0 20px rgba(37, 99, 235, 0.1);
-}
-
-/* 添加表单区域的背景样式 */
-.bg-white {
-  position: relative;
-  z-index: 1;
-  background: rgba(255, 255, 255, 0.9) !important;
-  backdrop-filter: blur(10px);
-}
-
+/* 只保留无法用Tailwind实现的动画效果 */
 @keyframes float {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-20px); }

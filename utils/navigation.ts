@@ -12,6 +12,9 @@ export interface RouteItem {
 // 主路由配置
 export const mainRoutes: RouteItem[] = [
   { id: "hero", name: "Home", icon: "home" },
+  { id: "compare", name: "Compare", icon: "compare" },
+  { id: "features", name: "Features", icon: "star" },
+  { id: "review", name: "Reviews", icon: "message" },
   { id: "pricing", name: "Pricing", icon: "tag" },
   { id: "faq", name: "FAQ", icon: "help" },
   { id: "blog", name: "Blog", href: "/blog", icon: "book" }
@@ -49,11 +52,28 @@ export const useNavigation = () => {
     router.push('/').then(() => {
       // 等待页面完全加载
       nextTick(() => {
-        executeScroll(sectionId)
-        // 清空锚点信息
-        sessionStorage.removeItem('targetSection')
-      })
-    })
+        // 添加重试机制
+        let retryCount = 0;
+        const maxRetries = 5;
+        const retryInterval = 50; // 200ms
+
+        const tryScroll = () => {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            executeScroll(sectionId);
+            sessionStorage.removeItem('targetSection');
+          } else if (retryCount < maxRetries) {
+            retryCount++;
+            setTimeout(tryScroll, retryInterval);
+          } else {
+            console.warn(`无法找到目标元素: ${sectionId}`);
+            sessionStorage.removeItem('targetSection');
+          }
+        };
+
+        tryScroll();
+      });
+    });
   }
 
   // 处理导航点击

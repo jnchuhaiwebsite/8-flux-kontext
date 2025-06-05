@@ -1,6 +1,6 @@
 <template>
   <div class="works-list">
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 min-h-[400px]">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 min-h-[400px]">
       <!-- 加载状态 -->
       <div v-if="loading" class="col-span-full flex items-center justify-center min-h-[400px]">
         <div class="flex flex-col items-center gap-2">
@@ -30,7 +30,7 @@
               sizes="sm:100vw md:50vw lg:33vw"
               @click="openLightbox(work.generate_image)"
             />
-            <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
               <button 
                 @click="openLightbox(work.generate_image)"
                 class="bg-white bg-opacity-80 p-2 rounded-full hover:bg-opacity-100 transition-all"
@@ -38,6 +38,18 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
                 </svg>
+              </button>
+              <button 
+                @click="handleDownload(work.generate_image)"
+                class="bg-white bg-opacity-80 p-2 rounded-full hover:bg-opacity-100 transition-all"
+                :disabled="isDownloading"
+              >
+                <svg v-if="!isDownloading" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                <div v-else class="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
               </button>
             </div>
             <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-3">
@@ -93,14 +105,30 @@
       </div>
     </div>
   </div>
+  <Toast
+    :show="toast.show"
+    :title="toast.title"
+    :message="toast.message"
+    :type="toast.type"
+    :duration="toast.duration"
+  />
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { getOpusList } from '~/api'
 import { useToast } from '~/composables/useToast'
+import Toast from '~/components/Toast.vue'
 
 const { toast, showToast } = useToast()
+
+// 定义 emit
+const emit = defineEmits(['show-toast'])
+
+// 修改 showToast 的调用方式
+const showToastMessage = (message: string, type: 'success' | 'error' | 'info' = 'info', title?: string) => {
+  emit('show-toast', { message, type, title })
+}
 
 interface Work {
   task_id: string
@@ -151,12 +179,13 @@ const fetchWorks = async (page: number) => {
     } else {
       works.value = []
       totalPage.value = 0
-      showToast(response.msg || '获取作品列表失败')
+      showToastMessage(response.msg || 'Get works list failed', 'error')
     }
   } catch (error) {
-    console.error('获取作品列表失败:', error)
+    console.error('Get works list failed:', error)
     works.value = []
     totalPage.value = 0
+    showToastMessage('Get works list failed', 'error')
   } finally {
     loading.value = false
   }
@@ -197,6 +226,36 @@ const handleWheel = (e: WheelEvent) => {
   const delta = e.deltaY > 0 ? -0.1 : 0.1
   const newScale = Math.max(0.1, Math.min(3, scale.value + delta))
   scale.value = newScale
+}
+
+// 下载图片
+const isDownloading = ref(false)
+const handleDownload = async (imageUrl: string) => {
+  if (!imageUrl || isDownloading.value) return
+  isDownloading.value = true
+  try {
+    const response = await fetch(imageUrl)
+    if (!response.ok) {
+      throw new Error('Download failed')
+    }
+    
+    const blob = await response.blob()
+    const url = window.URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = `${Date.now()}.png`
+    
+    document.body.appendChild(link)
+    link.click()
+    
+    document.body.removeChild(link)
+    window.URL.revokeObjectURL(url)
+  } catch (error) {
+    console.error('Download failed:', error)
+    showToastMessage('Download failed, please try again later', 'error')
+  } finally {
+    isDownloading.value = false
+  }
 }
 
 onMounted(() => {

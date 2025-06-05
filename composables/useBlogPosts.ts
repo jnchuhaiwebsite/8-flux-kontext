@@ -36,7 +36,7 @@ const blogPostsData: BlogPost[] = [
       <p>Perfect for social media content, marketing materials, and personal projects, Flux Kontext helps you achieve professional results with minimal effort.</p>
     `,
     description: 'Discover Flux Kontext: Your AI-powered image transformation solution',
-    date: '2024-03-20',
+    date: '2025-06-05',
     category: 'Product Introduction',
     skip: false,
     cta: "Try Now",
@@ -73,7 +73,7 @@ const blogPostsData: BlogPost[] = [
       <p class="mt-6">Start creating amazing transformed images with Flux Kontext today!</p>
     `,
     description: 'Learn how to use Flux Kontext for image transformation with text prompts',
-    date: '2024-03-20',
+    date: '2025-06-05',
     category: 'Tutorial',
     skip: false,
     cta: "Start Now",
@@ -103,10 +103,48 @@ const blogPostsData: BlogPost[] = [
       <p>Experience the difference with Flux Kontext - where quality meets simplicity in image transformation.</p>
     `,
     description: 'Learn about the benefits of using Flux Kontext for image transformation',
-    date: '2024-03-20',
+    date: '2025-06-05',
     category: 'Product Features',
     skip: false,
     cta: "Learn More",
+  },
+  {
+    id: 'mastering-text-prompts',
+    title: 'Mastering Kontext Text Prompts: Unleash the Full Potential of AI Image Transformation',
+    content: `
+      <h2 class="text-2xl font-bold mb-4">The Art of Text Prompts</h2>
+      <p>In Flux Kontext, text prompts serve as the bridge between your creativity and AI image transformation. Understanding how to craft effective prompts can help you achieve the best results.</p>
+      
+      <h3 class="text-xl font-bold my-4">Basic Principles of Prompt Writing</h3>
+      <ul class="list-disc pl-5 mb-6">
+        <li>Specificity - Describe your desired visual effects in detail</li>
+        <li>Clarity - Use simple and direct language</li>
+        <li>Structure - Start with main elements, then add details</li>
+        <li>Style - Specify artistic style or references</li>
+      </ul>
+      
+      <h3 class="text-xl font-bold my-4">Prompt Examples</h3>
+      <div class="bg-gray-100 p-4 rounded-lg mb-6">
+        <p class="font-mono">"Transform the photo into watercolor style, maintaining soft tones and flowing brushstrokes"</p>
+        <p class="font-mono">"Add a dreamy sunset background with golden and purple gradients"</p>
+        <p class="font-mono">"Convert the scene to vintage film style with subtle grain"</p>
+      </div>
+      
+      <h3 class="text-xl font-bold my-4">Advanced Techniques</h3>
+      <ul class="list-disc pl-5 mb-6">
+        <li>Use artistic style keywords (e.g., impressionist, realistic)</li>
+        <li>Specify lighting and atmosphere (e.g., soft lighting, dramatic shadows)</li>
+        <li>Add emotional elements (e.g., warmth, mystery, vibrancy)</li>
+        <li>Combine multiple elements for unique effects</li>
+      </ul>
+      
+      <p class="mt-6">By mastering these prompt techniques, you'll be able to fully utilize Flux Kontext's powerful features to create stunning image transformations.</p>
+    `,
+    description: 'Learn how to write effective text prompts for optimal AI image transformation results',
+    date: '2025-06-06',
+    category: 'Tutorial',
+    skip: false,
+    cta: "Start Now",
   }
 ]
 

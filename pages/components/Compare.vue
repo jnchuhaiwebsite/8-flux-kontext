@@ -30,22 +30,22 @@ const ImageCompare = defineAsyncComponent(() => import('~/components/ImageCompar
 
 const compareItems = [
   {
-    title: 'Local Redraw',
-    description: 'Precisely control specific areas while keeping others unchanged',
-    beforeImage: 'https://s.magicaitool.com/flux-ai/flux-kontext/before-3.jpg',
-    afterImage: 'https://s.magicaitool.com/flux-ai/flux-kontext/after-3.jpg'
+    title: 'Color Modification',
+    description: 'Change the color of the car to yellow and leave the rest as it is',
+    beforeImage: '/img/2_before.png',
+    afterImage: '/img/2_after.png'
   },
   {
-    title: 'Style Transfer',
-    description: 'Transform images into different artistic styles with one click',
-    beforeImage: 'https://s.magicaitool.com/flux-ai/flux-kontext/before-2.webp',
-    afterImage: 'https://s.magicaitool.com/flux-ai/flux-kontext/after-2.webp'
+    title: 'Object Addition',
+    description: 'Add a pink cat lying next to the cat',
+    beforeImage: '/img/3_before.png',
+    afterImage: '/img/3_after.png'
   },
   {
     title: 'Smart Repair',
-    description: 'Automatically fix image defects and restore perfect details',
-    beforeImage: 'https://s.magicaitool.com/flux-ai/flux-kontext/before-1.jpg',
-    afterImage: 'https://s.magicaitool.com/flux-ai/flux-kontext/after-1.jpg'
+    description: 'Restore the broken bowl to its original form and generate a complete bowl',
+    beforeImage: '/img/4_before.png',
+    afterImage: '/img/4_after.png'
   }
 ]
 </script> 

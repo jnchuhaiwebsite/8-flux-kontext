@@ -14,6 +14,11 @@
         <Compare />
       </section>
 
+      <!-- 功能特性模块 -->
+      <section id="features">
+        <Features />
+      </section>
+
       <!-- 评价模块 -->
       <section id="review">
         <ReviewDisplay />
@@ -48,17 +53,14 @@ const HomeHero = defineAsyncComponent(() => import('~/pages/components/HomeHero.
 const Compare = defineAsyncComponent(() => import('~/pages/components/Compare.vue'))
 const FaqSection = defineAsyncComponent(() => import('~/pages/components/FaqSection.vue'))
 const ReviewDisplay = defineAsyncComponent(() => import('~/pages/components/ReviewDisplay.vue'))
+const Features = defineAsyncComponent(() => import('~/pages/components/Features.vue'))
 
 import { useToast } from '~/composables/useToast';
 const { toast, showToast } = useToast();
 
 useSeo({
   title: "Flux Kontext - AI Image Generation & Editing Platform",
-  description: "Transform images with Flux Kontext's AI tools. Generate and edit using text and image prompts, featuring character consistency and precise object modification.",
-  ogTitle: "Flux Kontext - AI Image Generation & Editing Platform",
-  ogDescription: "Transform images with Flux Kontext's AI tools. Generate and edit using text and image prompts, featuring character consistency and precise object modification.",
-  twitterTitle: "Flux Kontext - AI Image Generation & Editing Platform",
-  twitterDescription: "Transform images with Flux Kontext's AI tools. Generate and edit using text and image prompts, featuring character consistency and precise object modification."
+  description: "Transform images with Flux Kontext's AI tools. Generate and edit using text and image prompts, featuring character consistency and precise object modification."
 });
 
 // 处理支付回调

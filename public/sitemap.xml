@@ -3,49 +3,55 @@
           
             <url>
               <loc>https://www.kontextimg.com</loc>
-              <lastmod>2025-05-28T07:25:16.460Z</lastmod>
+              <lastmod>2025-06-05T07:25:16.460Z</lastmod>
               <changefreq>daily</changefreq>
               <priority>1.0</priority>
             </url>
           
             <url>
               <loc>https://www.kontextimg.com/blog</loc>
-              <lastmod>2025-05-28T07:25:16.460Z</lastmod>
+              <lastmod>2025-06-05T07:25:16.460Z</lastmod>
               <changefreq>weekly</changefreq>
               <priority>0.8</priority>
             </url>
           
             <url>
-              <loc>https://www.kontextimg.com/blog/black-cross-background-removal</loc>
-              <lastmod>2025-05-28T07:25:16.460Z</lastmod>
+              <loc>https://www.kontextimg.com/blog/flux-kontext-introduction</loc>
+              <lastmod>2025-06-05T07:25:16.460Z</lastmod>
               <changefreq>weekly</changefreq>
               <priority>0.7</priority>
             </url>
           
             <url>
-              <loc>https://www.kontextimg.com/blog/feature-update</loc>
-              <lastmod>2025-05-28T07:25:16.460Z</lastmod>
+              <loc>https://www.kontextimg.com/blog/how-to-use-flux</loc>
+              <lastmod>2025-06-05T07:25:16.460Z</lastmod>
               <changefreq>weekly</changefreq>
               <priority>0.7</priority>
             </url>
 
             <url>
-              <loc>https://www.kontextimg.com/blog/background-removal-tutorial</loc>
-              <lastmod>2025-05-28T07:25:16.460Z</lastmod>
+              <loc>https://www.kontextimg.com/blog/flux-kontext-benefits</loc>
+              <lastmod>2025-06-05T07:25:16.460Z</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>0.7</priority>
+            </url>
+            <url>
+              <loc>https://www.kontextimg.com/blog/mastering-text-prompts</loc>
+              <lastmod>2025-06-05T07:25:16.460Z</lastmod>
               <changefreq>weekly</changefreq>
               <priority>0.7</priority>
             </url>
 
             <url>
               <loc>https://www.kontextimg.com/subsidiary/privacy-policy</loc>
-              <lastmod>2025-05-28T07:25:16.460Z</lastmod>
+              <lastmod>2025-06-05T07:25:16.460Z</lastmod>
               <changefreq>weekly</changefreq>
               <priority>0.8</priority>
             </url>
 
             <url>
               <loc>https://www.kontextimg.com/subsidiary/terms-of-service</loc>
-              <lastmod>2025-05-28T07:25:16.460Z</lastmod>
+              <lastmod>2025-06-05T07:25:16.460Z</lastmod>
               <changefreq>weekly</changefreq>
               <priority>0.8</priority>
             </url>

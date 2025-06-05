@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative w-full aspect-square rounded-2xl overflow-hidden bg-gray-100 shadow-lg"
+    class="relative w-full aspect-[3/2] rounded-2xl overflow-hidden bg-gray-100 shadow-lg"
     ref="containerRef"
     style="background: repeating-conic-gradient(#eee 0% 25%, #fff 0% 50%) 50% / 40px 40px;"
     @mousedown="startDrag"

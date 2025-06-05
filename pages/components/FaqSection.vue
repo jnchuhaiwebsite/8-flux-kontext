@@ -79,12 +79,8 @@ defineOptions({
 // FAQ数据
 const allFaqItems = [
   {
-    question: 'How to edit images with Flux Kontext?',
-    answer: 'Using Flux Kontext is simple! Just upload your image, enter a text prompt describing your desired edits, select the image size ratio, and click generate. Our AI technology will automatically process your image while maintaining character consistency and achieving your desired editing effects.'
-  },
-  {
     question: 'What image formats does Flux Kontext support?',
-    answer: 'Flux Kontext supports various common image formats including PNG, JPG, JPEG, and WEBP. For best results, we recommend using high-quality images with a maximum file size of 10MB.'
+    answer: 'Flux Kontext supports various common image formats including PNG, JPG, JPEG, and WEBP. For best results, we recommend using high-quality images with a maximum file size of 5MB.'
   },
   {
     question: 'How good is Flux Kontext\'s image editing quality?',
@@ -105,6 +101,22 @@ const allFaqItems = [
   {
     question: 'How does Flux Kontext maintain character consistency?',
     answer: 'Flux Kontext uses advanced AI models to intelligently recognize and maintain character features and styles in images. Even during the editing process, it ensures consistent appearance, expressions, and style of characters, making the editing results more natural.'
+  },
+  {
+    question: 'What are the system requirements?',
+    answer: 'Flux Kontext is a web-based application that works on all modern browsers including Chrome, Firefox, Safari, and Edge. You only need a stable internet connection and a device that can run these browsers.'
+  },
+  {
+    question: 'What makes Flux Kontext different from traditional image editors?',
+    answer: 'Unlike traditional image editors that require manual adjustments, Flux Kontext uses AI to understand your editing intentions. It can automatically maintain image quality, preserve important details, and ensure natural-looking results without requiring professional editing skills.'
+  },
+  {
+    question: 'What are some common use cases for Flux Kontext?',
+    answer: 'Flux Kontext is ideal for various scenarios: product photography enhancement, social media content creation, e-commerce image optimization, and personal photo editing. It\'s particularly useful for removing backgrounds, adjusting image styles, and making precise content modifications while maintaining visual consistency.'
+  },
+  {
+    question: 'Can I edit multiple images at once?',
+    answer: 'Currently, Flux Kontext processes one image at a time to ensure the highest quality results. However, you can queue multiple images for sequential processing. We are working on batch processing features for future updates.'
   }
 ];
 
