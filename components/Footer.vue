@@ -60,7 +60,7 @@
             <p>© 2025 Flux Kontext. All rights reserved.</p>
             <div class="flex items-center gap-2">
               <span>Contact:</span>
-              <a href="mailto:support@kontextimg.com" class="hover:text-baby-coral transition-colors">support@kontextimg.com</a>
+              <a href="mailto:support@kontextimg.com" class="hover:text-baby-coral transition-colors" style="color: #2a5ff6;">support@kontextimg.com</a>
             </div>
           </div>
         </div>

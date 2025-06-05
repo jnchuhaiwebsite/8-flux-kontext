@@ -5,7 +5,7 @@ console.log('当前环境:', process.env.NODE_ENV);
 
 const baseUrl = process.env.NODE_ENV === 'development'
   ? '/nuxtRequest'
-  : 'https://baby.genbabyname.com';
+  : 'https://www.kontextimg.com';
 
 console.log('当前baseUrl:', baseUrl);
 // API接口URL列表

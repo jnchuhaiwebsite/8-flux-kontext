@@ -141,7 +141,7 @@ const blogPostsData: BlogPost[] = [
       <p class="mt-6">By mastering these prompt techniques, you'll be able to fully utilize Flux Kontext's powerful features to create stunning image transformations.</p>
     `,
     description: 'Learn how to write effective text prompts for optimal AI image transformation results',
-    date: '2025-06-06',
+    date: '2025-06-05',
     category: 'Tutorial',
     skip: false,
     cta: "Start Now",
