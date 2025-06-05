@@ -105,7 +105,7 @@ a::after {
   left: 0;
   width: 0;
   height: 1px;
-  background-color: #FF7F50;
+  background-color: #2a5ff6;
   transition: width 0.3s ease;
 }
 

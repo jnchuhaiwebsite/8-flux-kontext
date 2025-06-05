@@ -46,6 +46,24 @@ const compareItems = [
     description: 'Restore the broken bowl to its original form and generate a complete bowl',
     beforeImage: '/img/4_before.webp',
     afterImage: '/img/4_after.webp'
+  },
+  {
+    title: 'Watermark Removal',
+    description: 'Remove the watermark from the image while preserving image quality',
+    beforeImage: '/img/5_before.webp',
+    afterImage: '/img/5_after.webp'
+  },
+  {
+    title: 'Text Replacement',
+    description: 'Replace the text on the sign with new content while maintaining the original style',
+    beforeImage: '/img/6_before.webp',
+    afterImage: '/img/6_after.webp'
+  },
+  {
+    title: 'Style Transfer',
+    description: 'Convert the image to Ghibli style',
+    beforeImage: '/img/7_before.webp',
+    afterImage: '/img/7_after.webp'
   }
 ]
 </script> 
