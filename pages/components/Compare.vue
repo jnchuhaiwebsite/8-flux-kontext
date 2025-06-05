@@ -50,8 +50,8 @@ const compareItems = [
   {
     title: 'Watermark Removal',
     description: 'Remove the watermark from the image while preserving image quality',
-    beforeImage: '/img/5_before.webp',
-    afterImage: '/img/5_after.webp'
+    beforeImage: '/img/8_before.webp',
+    afterImage: '/img/8_after.webp'
   },
   {
     title: 'Text Replacement',

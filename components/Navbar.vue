@@ -121,6 +121,13 @@
                   {{ section.name }}
                 </div>
               </template>
+              <NuxtLink
+                to="/works"
+                class="block text-gray-600 hover:text-baby-coral text-base py-2 transition-colors"
+                @click.prevent="handleSkipClick('/my-works')"
+              >
+              My works
+              </NuxtLink>
             </div>
 
             <!-- 移动端用户菜单 -->

@@ -101,18 +101,18 @@
 
             <!-- 上传图片 -->
             <div
-              class="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 py-4 mb-2 cursor-pointer transition hover:border-blue-400 relative h-[140px] w-full"
+              class="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 py-4 mb-2 cursor-pointer transition-all duration-300 hover:border-blue-400 hover:shadow-lg relative h-[140px] w-full"
               @click="handleUploadAreaClick"
               @dragenter.prevent="handleDragEnter"
               @dragover.prevent="handleDragOver"
               @dragleave.prevent="handleDragLeave"
               @drop.prevent="handleDrop"
-              :class="{ 'border-blue-400 bg-blue-50': isDragging }"
+              :class="{ 'border-blue-400 bg-blue-50 shadow-lg scale-[1.02]': isDragging }"
             >
               <!-- 已经上传图片 -->
               <template v-if="uploadImg">
                 <div class="relative w-full h-full flex items-center justify-center">
-                  <nuxt-img :src="uploadImg" alt="预览" class="max-h-[120px] max-w-full object-contain rounded-lg" />
+                  <nuxt-img :src="uploadImg" alt="Preview" class="max-h-[120px] max-w-full object-contain rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl" />
                   <!-- 右上角叉号 -->
                   <button
                     class="absolute -top-2 right-2 bg-gray-300 bg-opacity-80 rounded-full p-1 shadow hover:bg-red-100 transition"

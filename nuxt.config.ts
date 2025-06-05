@@ -54,7 +54,7 @@ export default defineNuxtConfig({
         // { rel: 'alternate', href: 'https://www.kontextimg.com', hreflang: 'en' }, // 英文版本
       ],
       script: [
-        // { src: '/js/c6h.js', async: true } 
+        { src: '/js/c6h.js', async: true } 
       ] // 外部脚本
     }
   },

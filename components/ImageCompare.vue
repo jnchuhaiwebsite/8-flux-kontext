@@ -14,6 +14,7 @@
         :src="afterImage" 
         alt="Original" 
         class="w-full h-full object-cover" 
+        loading="lazy"
       />
     </div>
     
@@ -25,6 +26,7 @@
       <nuxt-img 
         :src="beforeImage" 
         alt="Result" 
+        loading="lazy"
         class="w-full h-full object-cover"
       />
     </div>

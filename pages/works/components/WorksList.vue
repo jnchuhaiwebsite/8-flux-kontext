@@ -85,14 +85,17 @@
     </div>
 
     <!-- 图片预览模态框 -->
-    <div v-if="showPreview" class="fixed inset-0 z-50 flex items-center justify-center bg-black/90" @click="closePreview">
+    <div v-if="showPreview" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/90" @click="closePreview">
       <div class="relative max-w-7xl max-h-[90vh] w-full h-full flex items-center justify-center">
-        <img 
+        <NuxtImg 
           :src="previewImage" 
           class="max-w-full max-h-full object-contain cursor-pointer"
           :style="{ transform: `scale(${scale})` }"
           @wheel.prevent="handleWheel"
           @click="closePreview"
+          loading="lazy"
+          placeholder
+          sizes="100vw"
         />
         <button 
           @click="closePreview"
