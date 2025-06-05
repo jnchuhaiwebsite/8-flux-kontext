@@ -69,7 +69,7 @@
           <div class="relative">
             <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-3xl transform rotate-6 scale-105 opacity-30"></div>
             <img 
-              src="/img/1.png" 
+              src="/img/1.webp" 
               alt="Demo Preview" 
               class="relative rounded-3xl shadow-2xl transform -rotate-6 hover:rotate-0 transition-all duration-500 hover:scale-105 bg-white/20 backdrop-blur-sm p-4"
             />
@@ -294,9 +294,9 @@ const userInfo = computed(() => userStore.userInfo)
 const remainingTimes = ref(userStore.userInfo?.free_limit+userStore.userInfo?.remaining_limit|| 0)
 
 // 示例-原始图片
-const originImg = ref('/img/5_before.png')
+const originImg = ref('/img/5_before.webp')
 // 示例-结果图片
-const resultImg = ref('/img/5_after.png')
+const resultImg = ref('/img/5_after.webp')
 
 // 上传的图片
 const uploadImg = ref('')

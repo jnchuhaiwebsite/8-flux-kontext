@@ -32,20 +32,20 @@ const compareItems = [
   {
     title: 'Color Modification',
     description: 'Change the color of the car to yellow and leave the rest as it is',
-    beforeImage: '/img/2_before.png',
-    afterImage: '/img/2_after.png'
+    beforeImage: '/img/2_before.webp',
+    afterImage: '/img/2_after.webp'
   },
   {
     title: 'Object Addition',
     description: 'Add a pink cat lying next to the cat',
-    beforeImage: '/img/3_before.png',
-    afterImage: '/img/3_after.png'
+    beforeImage: '/img/3_before.webp',
+    afterImage: '/img/3_after.webp'
   },
   {
     title: 'Smart Repair',
     description: 'Restore the broken bowl to its original form and generate a complete bowl',
-    beforeImage: '/img/4_before.png',
-    afterImage: '/img/4_after.png'
+    beforeImage: '/img/4_before.webp',
+    afterImage: '/img/4_after.webp'
   }
 ]
 </script> 

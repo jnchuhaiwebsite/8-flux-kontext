@@ -8,7 +8,7 @@
           class="relative focus:outline-none"
         >
           <img
-            :src="userDisplay?.imageUrl || '/default-avatar.png'"
+            :src="userDisplay?.imageUrl || '/img/default-avatar.png'"
             :alt="userDisplay?.username ? `${userDisplay.username}'s Profile Picture - Flux Kontext` : 'Default User Avatar - Flux Kontext'"
             loading="lazy"
             class="w-10 h-10 rounded-full object-cover hover:opacity-80 transition-opacity"
@@ -23,7 +23,7 @@
           <div class="px-4 py-3 border-b border-baby-pink/20">
             <div class="flex items-center gap-3 mb-2">
               <img
-                :src="userDisplay?.imageUrl || '/default-avatar.png'"
+                :src="userDisplay?.imageUrl || '/img/default-avatar.png'"
                 :alt="userDisplay?.username ? `${userDisplay.username}'s Profile Picture - Flux Kontext` : 'Default User Avatar - Flux Kontext'"
                 loading="lazy"
                 class="w-10 h-10 rounded-full object-cover ring-2 ring-baby-pink/20"
@@ -121,7 +121,7 @@
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-3">
           <img
-            :src="userDisplay?.imageUrl || '/default-avatar.png'"
+            :src="userDisplay?.imageUrl || '/img/default-avatar.png'"
             :alt="userDisplay?.username ? `${userDisplay.username}'s Profile Picture - Flux Kontext` : 'Default User Avatar - Flux Kontext'"
             loading="lazy"
             class="w-10 h-10 rounded-full object-cover ring-2 ring-baby-pink/20"
