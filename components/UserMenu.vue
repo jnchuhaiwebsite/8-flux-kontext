@@ -117,7 +117,7 @@
 
   <!-- 移动端用户菜单（在导航滑出菜单内）-->
   <template v-if="isMobile">
-    <div v-if="isSignedIn" class="pt-4 border-t border-gray-200">
+    <div v-if="isSignedIn" class="pt-4 border-t border-gray-200 flex justify-between">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-3">
           <img
@@ -162,7 +162,7 @@
       <!-- 退出按钮 -->
       <SignOutButton>
         <button
-          class="mt-4 w-full py-2 px-4 flex items-center justify-center gap-2 rounded-lg bg-baby-pink/10 hover:bg-baby-pink/20 transition-all duration-200 hover:scale-[1.02] text-sm font-medium text-red-500">
+          class="mt-4 py-2 px-4 flex items-center justify-center gap-2 rounded-lg bg-baby-pink/10 hover:bg-baby-pink/20 transition-all duration-200 hover:scale-[1.02] text-sm font-medium text-red-500">
           <!-- Heroicons: logout/arrow-right-on-rectangle -->
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -284,10 +284,15 @@ onMounted(async () => {
     // 初始化认证
     initAuth();
 
-    // 设置一个超时，确保loading状态不会永久存在Add comment更多操作
+    // 设置一个超时，确保loading状态不会永久存在
     setTimeout(() => {
       isAuthLoading.value = false;
     }, 5000);
+    
+    // 如果已经登录，立即获取用户信息
+    if (isSignedIn.value) {
+      await getUserInfo();
+    }
     
     // 监听登录事件
     on('login', async (user: any) => {
@@ -332,8 +337,12 @@ onMounted(async () => {
     });
 
     // 监听Clerk加载完成事件，更新认证加载状态
-    on('clerkLoaded', () => {
+    on('clerkLoaded', async (isSignedIn: boolean) => {
       isAuthLoading.value = false;
+      // 如果Clerk加载完成且用户已登录，获取用户信息
+      if (isSignedIn) {
+        await getUserInfo();
+      }
     });
     
     // 监听错误事件，确保用户界面不会一直处于加载状态

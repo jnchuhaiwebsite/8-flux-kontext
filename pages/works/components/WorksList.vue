@@ -20,10 +20,10 @@
           </div>
         </div>
         <div v-else v-for="work in works" :key="work.task_id" class="work-item">
-          <div class="relative aspect-square rounded-lg overflow-hidden group">
+          <div class="relative aspect-square rounded-lg overflow-hidden group shadow-lg hover:shadow-xl transition-shadow">
             <NuxtImg 
               :src="work.generate_image" 
-              :alt="work.status_msg"
+              :alt="`Flux Kontext AI generated image - ${work.status_msg}`"
               class="w-full h-full object-cover cursor-pointer"
               loading="lazy"
               placeholder
@@ -33,7 +33,8 @@
             <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
               <button 
                 @click="openLightbox(work.generate_image)"
-                class="bg-white bg-opacity-80 p-2 rounded-full hover:bg-opacity-100 transition-all"
+                class="bg-white bg-opacity-80 p-2 rounded-full hover:bg-opacity-100 transition-all shadow-lg hover:shadow-xl"
+                title="View full size"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
@@ -41,8 +42,9 @@
               </button>
               <button 
                 @click="handleDownload(work.generate_image)"
-                class="bg-white bg-opacity-80 p-2 rounded-full hover:bg-opacity-100 transition-all"
+                class="bg-white bg-opacity-80 p-2 rounded-full hover:bg-opacity-100 transition-all shadow-lg hover:shadow-xl"
                 :disabled="isDownloading"
+                title="Download image"
               >
                 <svg v-if="!isDownloading" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -51,10 +53,24 @@
                 </svg>
                 <div v-else class="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
               </button>
+              <button 
+                v-if="work.prompt"
+                @click="handleCopyPrompt(work.prompt)"
+                class="bg-white bg-opacity-80 p-2 rounded-full hover:bg-opacity-100 transition-all shadow-lg hover:shadow-xl"
+                title="Copy prompt"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
             </div>
             <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-3">
-              <p class="text-sm">{{ formatDate(work.created_at) }}</p>
-              <p class="text-sm">{{ work.status_msg }}</p>
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-0">
+                <p class="text-sm">{{ formatDate(work.created_at) }}</p>
+                <p class="text-sm px-2 py-0.5 bg-white/20 rounded-full text-center sm:text-left whitespace-nowrap">{{ work.status_msg }}</p>
+              </div>
+              <p v-if="work.prompt" class="text-sm truncate mt-1" :title="work.prompt">{{ work.prompt }}</p>
             </div>
           </div>
         </div>
@@ -146,6 +162,7 @@ interface Work {
   msg: string
   created_at: number
   updated_at: number
+  prompt: string
 }
 
 interface WorksResponse {
@@ -157,7 +174,7 @@ interface WorksResponse {
 const works = ref<Work[]>([])
 const currentPage = ref(1)
 const totalPage = ref(1)
-const pageSize = 12
+const pageSize = 8
 
 // 加载状态
 const loading = ref(true)
@@ -259,6 +276,15 @@ const handleDownload = async (imageUrl: string) => {
   } finally {
     isDownloading.value = false
   }
+}
+
+// 复制 prompt
+const handleCopyPrompt = (prompt: string) => {
+  navigator.clipboard.writeText(prompt).then(() => {
+    showToastMessage('Prompt copied to clipboard', 'success')
+  }).catch(() => {
+    showToastMessage('Failed to copy prompt', 'error')
+  })
 }
 
 onMounted(() => {

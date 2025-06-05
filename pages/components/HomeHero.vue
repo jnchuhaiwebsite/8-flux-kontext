@@ -207,7 +207,6 @@
             <div class="w-full text-left mb-3">
               <h2 class="text-lg font-bold text-gray-800 mb-1">Flux Kontext Result</h2>
               <p class="text-sm text-gray-600">The modified image results will appear here.</p>
-              <p class="text-xs text-gray-500 mt-1">Result Time: 5s - 20s</p>
             </div>
 
             <!-- 加载状态 -->
@@ -215,6 +214,7 @@
               <div class="flex flex-col items-center gap-3">
                 <div class="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
                 <span class="text-gray-600 text-sm">Processing your image...</span>
+                <span class="text-xs text-gray-500">Result Time: 5s - 20s</span>
               </div>
             </div>
 

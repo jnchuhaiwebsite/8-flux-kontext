@@ -115,18 +115,19 @@
                 </NuxtLink>
                 <div
                   v-else-if="section.id"
-                  @click="handleNavClick(section.id)"
+                  @click="() => { handleNavClick(section.id); isOpen = false; }"
                   class="block text-gray-600 hover:text-baby-coral text-base py-2 transition-colors"
                 >
                   {{ section.name }}
                 </div>
               </template>
               <NuxtLink
+                v-if="isSignedIn"
                 to="/works"
                 class="block text-gray-600 hover:text-baby-coral text-base py-2 transition-colors"
                 @click.prevent="handleSkipClick('/my-works')"
               >
-              My works
+                My works
               </NuxtLink>
             </div>
 
@@ -142,9 +143,11 @@
 <script setup lang="ts">
 import { ref, watch, onUnmounted, onMounted } from "vue";
 import { useNavigation } from "~/utils/navigation";
+import { useClerkAuth } from '~/utils/auth';
 
 // 状态管理
 const isOpen = ref(false);
+const { isSignedIn } = useClerkAuth();
 
 // 使用导航工具
 const { activeSection, sections, handleNavClick, handleScroll, executeScroll } =
