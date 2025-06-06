@@ -104,10 +104,7 @@
 </template>
 
 <script setup lang="ts">
-import { useHead,useRequestURL } from 'nuxt/app'
-
-const url = useRequestURL();
-const baseUrl = url.origin;
+import { useSeo } from '~/composables/useSeo';
 
 // @ts-ignore: Nuxt宏函数
 definePageMeta({
@@ -115,11 +112,16 @@ definePageMeta({
   name: 'privacy-policy'
 })
 
-useHead({
+useSeo({
   title: 'Flux Kontext | Privacy Policy',
-  meta: [
-    { name: 'description', content: 'Flux Kontext Privacy Policy: Learn how we protect your data while using our AI-powered image processing and context management services, including data security and user rights.' },
-  ],
-  link: [{ rel: 'canonical', href: `${baseUrl}/subsidiary/privacy-policy` }]
+  description: 'Flux Kontext Privacy Policy: Learn how we protect your data while using our AI-powered image processing and context management services, including data security and user rights.'
 })
+
+// useHead({
+//   title: 'Flux Kontext | Privacy Policy',
+//   meta: [
+//     { name: 'description', content: 'Flux Kontext Privacy Policy: Learn how we protect your data while using our AI-powered image processing and context management services, including data security and user rights.' },
+//   ],
+//   link: [{ rel: 'canonical', href: `${baseUrl}/subsidiary/privacy-policy` }]
+// })
 </script> 
