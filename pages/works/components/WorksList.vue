@@ -67,7 +67,7 @@
             </div>
             <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-3">
               <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-0">
-                <p class="text-sm">{{ formatDate(work.created_at) }}</p>
+                <!-- <p class="text-sm">{{ formatDate(work.created_at) }}</p> -->
                 <p class="text-sm px-2 py-0.5 bg-white/20 rounded-full text-center sm:text-left whitespace-nowrap">{{ work.status_msg }}</p>
               </div>
               <p v-if="work.prompt" class="text-sm truncate mt-1" :title="work.prompt">{{ work.prompt }}</p>
