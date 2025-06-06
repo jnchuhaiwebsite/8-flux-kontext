@@ -119,10 +119,7 @@
 </template>
 
 <script setup lang="ts">
-import { useHead,useRequestURL } from 'nuxt/app'
-
-const url = useRequestURL();
-const baseUrl = url.origin;
+import { useSeo } from '~/composables/useSeo';
 
 // @ts-ignore: Nuxt宏函数
 definePageMeta({
@@ -130,11 +127,16 @@ definePageMeta({
   name: 'terms-of-service'
 })
 
-useHead({
+useSeo({
   title: 'Flux Kontext | Terms of Service',
-  meta: [
-    { name: 'description', content: 'Flux Kontext Terms of Service: Learn about our AI-powered image processing and context management services, account usage, content rights, and commercial usage terms.' },
-  ],
-  link: [{ rel: 'canonical', href: `${baseUrl}/subsidiary/terms-of-service` }]
+  description: 'Flux Kontext Terms of Service: Learn about our AI-powered image processing and context management services, account usage, content rights, and commercial usage terms.'
 })
+
+// useHead({
+//   title: 'Flux Kontext | Terms of Service',
+//   meta: [
+//     { name: 'description', content: 'Flux Kontext Terms of Service: Learn about our AI-powered image processing and context management services, account usage, content rights, and commercial usage terms.' },
+//   ],
+//   link: [{ rel: 'canonical', href: `${baseUrl}/subsidiary/terms-of-service` }]
+// })
 </script> 
