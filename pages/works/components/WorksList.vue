@@ -102,25 +102,27 @@
 
     <!-- 图片预览模态框 -->
     <div v-if="showPreview" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/90" @click="closePreview">
-      <div class="relative max-w-7xl max-h-[90vh] w-full h-full flex items-center justify-center">
-        <NuxtImg 
-          :src="previewImage" 
-          class="max-w-full max-h-full object-contain cursor-pointer"
-          :style="{ transform: `scale(${scale})` }"
-          @wheel.prevent="handleWheel"
-          @click="closePreview"
-          loading="lazy"
-          placeholder
-          sizes="100vw"
-        />
-        <button 
-          @click="closePreview"
-          class="absolute top-4 right-4 text-white bg-black/50 p-2 rounded-full hover:bg-black/75 transition-colors"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+      <div class="relative w-full h-full flex items-center justify-center p-4">
+        <div class="relative w-full h-full flex items-center justify-center">
+          <NuxtImg 
+            :src="previewImage" 
+            class="max-w-full max-h-full w-auto h-auto object-contain cursor-pointer"
+            :style="{ transform: `scale(${scale})` }"
+            @wheel.prevent="handleWheel"
+            @click="closePreview"
+            loading="lazy"
+            placeholder
+            sizes="100vw"
+          />
+          <button 
+            @click="closePreview"
+            class="absolute top-4 right-4 text-white bg-black/50 p-2 rounded-full hover:bg-black/75 transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>
