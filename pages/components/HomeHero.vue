@@ -10,12 +10,6 @@
       </div>
       <!-- 网格背景 -->
       <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:50px_50px]">
-        <!-- 鼠标跟随效果 -->
-        <div id="mouse-follower-container" class="absolute inset-0 pointer-events-none overflow-hidden">
-          <div id="mouse-follower-1" class="absolute w-5 h-5 bg-blue-400/60 rounded-full pointer-events-none transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-100 ease-in-out mix-blend-screen shadow-[0_0_10px_rgba(96,165,250,0.3)] opacity-0"></div>
-          <div id="mouse-follower-2" class="absolute w-10 h-10 bg-blue-500/30 rounded-full pointer-events-none transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-150 ease-in-out mix-blend-screen shadow-[0_0_15px_rgba(59,130,246,0.2)] opacity-0"></div>
-          <div id="mouse-follower-3" class="absolute w-[60px] h-[60px] bg-blue-600/10 rounded-full pointer-events-none transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-200 ease-in-out mix-blend-screen shadow-[0_0_20px_rgba(37,99,235,0.1)] opacity-0"></div>
-        </div>
       </div>
     </div>
 
@@ -348,20 +342,6 @@ const removeImage = () => {
   if (fileInputRef.value) fileInputRef.value.value = ''
 }
 
-// 添加登录状态检查方法
-const checkLoginStatus = async () => {
-  if (!userInfo.value) {
-    showToast('Please login first to use this feature', 'error')
-    // 使用 id 选择器获取登录按钮
-    const loginButton = document.getElementById('bindLogin')
-    if (loginButton) {
-      loginButton.click()
-    }
-    return false
-  }
-  return true
-}
-
 // 添加使用次数检查方法
 const checkUsageLimit = () => {
   if (remainingTimes.value <= 0) {
@@ -380,48 +360,34 @@ watch(
   { immediate: true }
 )
 
-onMounted(() => {
-  // 添加鼠标跟随效果
-  const container = document.getElementById('mouse-follower-container')
-  const followers = [
-    document.getElementById('mouse-follower-1'),
-    document.getElementById('mouse-follower-2'),
-    document.getElementById('mouse-follower-3')
-  ]
-  
-  const handleMouseMove = (e: MouseEvent) => {
-    if (!container) return
-    
-    const rect = container.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    
-    // 检查鼠标是否在容器内
-    if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
-      followers.forEach((follower, index) => {
-        if (follower instanceof HTMLElement) {
-          const delay = index * 50
-          const scale = 1 + Math.sin(Date.now() * 0.002) * 0.08
-          setTimeout(() => {
-            follower.style.left = x + 'px'
-            follower.style.top = y + 'px'
-            follower.style.transform = `translate(-50%, -50%) scale(${scale})`
-            follower.style.opacity = '1'
-          }, delay)
-        }
-      })
-    } else {
-      // 鼠标离开容器时隐藏跟随效果
-      followers.forEach(follower => {
-        if (follower instanceof HTMLElement) {
-          follower.style.opacity = '0'
-        }
-      })
-    }
+// 添加本地存储相关的函数
+const saveState = () => {
+  const state = {
+    prompt: prompt.value,
+    uploadImg: uploadImg.value,
+    selectedRatio: selectedRatio.value
   }
+  localStorage.setItem('flux_kontext_state', JSON.stringify(state))
+}
 
-  // 始终添加事件监听，不再根据 showForm 状态移除
-  document.addEventListener('mousemove', handleMouseMove)
+const loadState = () => {
+  const savedState = localStorage.getItem('flux_kontext_state')
+  if (savedState) {
+    const state = JSON.parse(savedState)
+    prompt.value = state.prompt
+    uploadImg.value = state.uploadImg
+    selectedRatio.value = state.selectedRatio
+  }
+}
+
+// 监听状态变化
+watch([prompt, uploadImg, selectedRatio], () => {
+  saveState()
+})
+
+// 在组件挂载时加载状态
+onMounted(() => {
+  loadState()
 })
 
 // 处理图片
@@ -429,11 +395,6 @@ const isProcessing = ref(false);//是否处理中
 
 // 处理图片上传
 const handleUpload = async (file: File) => {
-  // 检查登录状态
-  if (!await checkLoginStatus()) {
-    return
-  }
-  
   // 检查文件大小
   if (file.size > 5 * 1024 * 1024) {
     showToast('File size should not exceed 5MB', 'error')
@@ -448,10 +409,11 @@ const handleUpload = async (file: File) => {
 
 // 处理表单提交
 const handleSubmit = async () => {
-  // 检查登录状态和使用次数
-  if (!await checkLoginStatus() || !checkUsageLimit() || isProcessing.value) {
+  // 检查使用次数和处理状态
+  if (!checkUsageLimit() || isProcessing.value) {
     return
   }
+
   if (!prompt.value) {
     showToast('Please enter a prompt', 'error')
     // 获取焦点
@@ -464,6 +426,17 @@ const handleSubmit = async () => {
   
   if (prompt.value.length > 400) {
     showToast('Prompt should not exceed 400 characters', 'error')
+    return
+  }
+
+  // 检查登录状态
+  if (!userInfo.value) {
+    showToast('Please login first to generate image', 'error')
+    // 使用 id 选择器获取登录按钮
+    const loginButton = document.getElementById('bindLogin')
+    if (loginButton) {
+      loginButton.click()
+    }
     return
   }
 
@@ -483,6 +456,8 @@ const handleSubmit = async () => {
       remainingTimes.value--
       // 更新用户信息
       await userStore.fetchUserInfo(true)
+      // 清除本地存储
+      localStorage.removeItem('flux_kontext_state')
     } else {
       showToast(response.msg, 'error')
     }
@@ -562,6 +537,8 @@ const handleBack = () => {
   isProcessing.value = false
   isImageLoading.value = false
   isDownloading.value = false
+  // 清除本地存储
+  localStorage.removeItem('flux_kontext_state')
 }
 
 // 拖拽状态
