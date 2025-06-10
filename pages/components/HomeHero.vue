@@ -301,6 +301,7 @@ const prompt = ref('')
 // 生成的图片
 const generatedImage = ref('')
 const isImageLoading = ref(false)
+const isProcessing = ref(false) //是否处理中
 
 // 比例选项
 const ratios = [
@@ -359,39 +360,6 @@ watch(
   },
   { immediate: true }
 )
-
-// 添加本地存储相关的函数
-const saveState = () => {
-  const state = {
-    prompt: prompt.value,
-    uploadImg: uploadImg.value,
-    selectedRatio: selectedRatio.value
-  }
-  localStorage.setItem('flux_kontext_state', JSON.stringify(state))
-}
-
-const loadState = () => {
-  const savedState = localStorage.getItem('flux_kontext_state')
-  if (savedState) {
-    const state = JSON.parse(savedState)
-    prompt.value = state.prompt
-    uploadImg.value = state.uploadImg
-    selectedRatio.value = state.selectedRatio
-  }
-}
-
-// 监听状态变化
-watch([prompt, uploadImg, selectedRatio], () => {
-  saveState()
-})
-
-// 在组件挂载时加载状态
-onMounted(() => {
-  loadState()
-})
-
-// 处理图片
-const isProcessing = ref(false);//是否处理中
 
 // 处理图片上传
 const handleUpload = async (file: File) => {
@@ -456,8 +424,6 @@ const handleSubmit = async () => {
       remainingTimes.value--
       // 更新用户信息
       await userStore.fetchUserInfo(true)
-      // 清除本地存储
-      localStorage.removeItem('flux_kontext_state')
     } else {
       showToast(response.msg, 'error')
     }
@@ -537,8 +503,6 @@ const handleBack = () => {
   isProcessing.value = false
   isImageLoading.value = false
   isDownloading.value = false
-  // 清除本地存储
-  localStorage.removeItem('flux_kontext_state')
 }
 
 // 拖拽状态
