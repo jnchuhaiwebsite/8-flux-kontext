@@ -124,7 +124,7 @@
                 <PhotoIcon class="w-10 h-10 text-gray-400 mb-1" />
                 <span class="text-gray-400 text-sm">
                   Drag & drop or 
-                  <span class="text-blue-500 cursor-pointer underline" @click.stop="() => fileInputRef?.click()">browse</span>
+                  <span class="text-blue-500 cursor-pointer underline" @click.stop="handleBrowseClick">browse</span>
                 </span>
                 <span class="text-gray-300 text-sm mt-1">PNG, JPG, JPEG or WEBP (max: 5MB)</span>
               </template>
@@ -137,6 +137,7 @@
               rows="3" 
               placeholder="Describe how your image should look like..."
               maxlength="400"
+              @focus.prevent="handleTextareaFocus"
             ></textarea>
             <div class="text-right text-sm text-gray-500">{{ prompt.length }}/400</div>
             <!-- 尺寸选择 -->
@@ -256,7 +257,7 @@
       :title="toast.title"
       :message="toast.message"
       :type="toast.type"
-      duration="2000"
+      :duration="2000"
     />
   </div>
 </template>
@@ -265,6 +266,7 @@
 import { ref, onMounted, computed, watch, defineAsyncComponent } from 'vue'
 import { createTask } from '~/api/index'
 import { useUserStore } from '~/stores/user'
+import { useRouter } from 'vue-router'
 import { 
   PhotoIcon, 
   ChevronLeftIcon, 
@@ -326,12 +328,15 @@ const defaultRatios = ratios.slice(0, 6)
 const showMoreRatios = ref(false)
 const selectedRatio = ref('match_input_image')
 const selectRatio = (val: string) => {
+  if (!checkLogin()) return
   selectedRatio.value = val
 }
 
 // 上传 input 相关
 const fileInputRef = ref<HTMLInputElement | null>(null)
 const onFileChange = (e: Event) => {
+  if (!checkLogin()) return
+  
   const files = (e.target as HTMLInputElement).files
   if (files && files[0]) {
     handleUpload(files[0])
@@ -343,10 +348,15 @@ const removeImage = () => {
   if (fileInputRef.value) fileInputRef.value.value = ''
 }
 
-// 添加使用次数检查方法
+
+// 修改 checkUsageLimit 方法
 const checkUsageLimit = () => {
-  if (remainingTimes.value <= 0) {
+  if (remainingTimes.value >= 0) {
     showToast('Usage limit reached. Please upgrade to premium for more credits', 'error')
+    setTimeout(() => {
+      // 跳转到套餐模块
+      document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })
+    }, 200)
     return false
   }
   return true
@@ -377,6 +387,8 @@ const handleUpload = async (file: File) => {
 
 // 处理表单提交
 const handleSubmit = async () => {
+  if (!checkLogin()) return
+
   // 检查使用次数和处理状态
   if (!checkUsageLimit() || isProcessing.value) {
     return
@@ -394,17 +406,6 @@ const handleSubmit = async () => {
   
   if (prompt.value.length > 400) {
     showToast('Prompt should not exceed 400 characters', 'error')
-    return
-  }
-
-  // 检查登录状态
-  if (!userInfo.value) {
-    showToast('Please login first to generate image', 'error')
-    // 使用 id 选择器获取登录按钮
-    const loginButton = document.getElementById('bindLogin')
-    if (loginButton) {
-      loginButton.click()
-    }
     return
   }
 
@@ -466,6 +467,8 @@ const handleDownload = async () => {
 }
 // 上传图片点击触发
 const handleUploadAreaClick = () => {
+  if (!checkLogin()) return
+  
   if (!uploadImg.value && fileInputRef.value) fileInputRef.value.click()
 }
 
@@ -522,13 +525,48 @@ const handleDragOver = (e: DragEvent) => {
 const handleDragLeave = (e: DragEvent) => {
   isDragging.value = false
 }
-
+const checkLogin = () => {
+  if (!userInfo.value) {
+    const loginButton = document.getElementById('bindLogin')
+    if (loginButton) {
+      loginButton.click()
+    }
+    return false
+  }
+  return true
+}
 // 处理文件拖放
 const handleDrop = async (e: DragEvent) => {
+  if (!checkLogin()) return
+  
   isDragging.value = false
   const files = e.dataTransfer?.files
   if (files && files[0]) {
     handleUpload(files[0])
+  }
+}
+
+// 在 script setup 部分修改 handleTextareaFocus 函数
+const handleTextareaFocus = () => {
+  if (!userInfo.value) {
+    const loginButton = document.getElementById('bindLogin')
+    if (loginButton) {
+      loginButton.click()
+      // 移除焦点
+      const textarea = document.querySelector('textarea')
+      if (textarea) {
+        textarea.blur()
+      }
+    }
+  }
+}
+
+// 在 script setup 部分添加 handleBrowseClick 函数
+const handleBrowseClick = () => {
+  if (!checkLogin()) return
+  
+  if (fileInputRef.value) {
+    fileInputRef.value.click()
   }
 }
 </script>
