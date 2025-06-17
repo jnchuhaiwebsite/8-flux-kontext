@@ -15,7 +15,8 @@ const urlList = {
   createTasks: baseUrl + '/api/task/flux/create',     // 创建任务
   getSubPlans: baseUrl + '/api/website/priceList',     // 获取套餐信息
   payOrder: baseUrl + '/api/pay/stripe',  // 支付
-  opusList: baseUrl + '/api/user/opus_list' // 获取用户作品列表
+  opusList: baseUrl + '/api/user/opus_list', // 获取用户作品列表
+  upload: baseUrl + '/api/common/upload' // 上传图片
 }
 
 
@@ -77,6 +78,8 @@ export const getCurrentUser = async () => {
 /**
  * 创建任务
  * @param {string} prompt - 提示词，用于描述任务的内容或要求
+ * @param {string} size - 图片比例
+ * @param {string} image_url - 图片url,两个图片之间"||"分割
  * @returns {Object} - 返回任务结果
  */
 export const createTask = async (data: any) => {
@@ -116,6 +119,14 @@ export const getOpusList = async (data: any) => {
   return apiRequest(urlList.opusList+`?page=${data.page}&page_size=${data.page_size}&status=${data.status}`, 'GET', undefined, true);
 }
 
+/**
+ * 上传图片
+ * @param data 上传图片数据
+ * @returns 上传图片结果
+ */
+export const upload = async (data: any) => {
+  return apiRequest(urlList.upload, 'POST', data, false);
+}
 
 
 

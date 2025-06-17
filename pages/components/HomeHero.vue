@@ -104,31 +104,31 @@
               :class="{ 'border-blue-400 bg-blue-50 shadow-lg scale-[1.02]': isDragging }"
             >
               <!-- 已经上传图片 -->
-              <template v-if="uploadImg">
-                <div class="relative w-full h-full flex items-center justify-center">
-                  <nuxt-img :src="uploadImg" alt="Preview" class="max-h-[120px] max-w-full object-contain rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl" />
-                  <!-- 右上角叉号 -->
-                  <button
-                    class="absolute -top-2 right-2 bg-gray-300 bg-opacity-80 rounded-full p-1 shadow hover:bg-red-100 transition"
-                    @click.stop="removeImage"
-                    type="button"
-                  >
-                    <XMarkIcon class="w-4 h-4 text-gray-500 hover:text-red-500" />
-                  </button>
+              <template v-if="uploadImgs.length">
+                <div class="flex gap-2 w-full h-full items-center justify-center">
+                  <div v-for="(img, idx) in uploadImgs" :key="img" class="relative w-[45%] h-[120px] flex items-center justify-center">
+                    <nuxt-img :src="img" alt="Preview" class="max-h-[120px] max-w-full object-contain rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl" />
+                    <button
+                      class="absolute -top-2 right-2 bg-gray-300 bg-opacity-80 rounded-full p-1 shadow hover:bg-red-100 transition"
+                      @click.stop="removeImage(idx)"
+                      type="button"
+                    >
+                      <XMarkIcon class="w-4 h-4 text-gray-500 hover:text-red-500" />
+                    </button>
+                  </div>
                 </div>
+                <div v-if="uploadImgs.length < 2" class="absolute bottom-2 right-2 text-xs text-blue-400">You can upload one more picture.</div>
               </template>
-
               <!-- 没有上传图片 -->
               <template v-else>
-                <!-- Heroicons 图片图标 -->
                 <PhotoIcon class="w-10 h-10 text-gray-400 mb-1" />
                 <span class="text-gray-400 text-sm">
                   Drag & drop or 
                   <span class="text-blue-500 cursor-pointer underline" @click.stop="handleBrowseClick">browse</span>
                 </span>
-                <span class="text-gray-300 text-sm mt-1">PNG, JPG, JPEG or WEBP (max: 5MB)</span>
+                <span class="text-gray-300 text-sm mt-1">PNG, JPG, JPEG or WEBP (max: 5MB, Up to 2 sheets)</span>
               </template>
-              <input type="file" accept="image/*" class="hidden" ref="fileInputRef" @change="onFileChange" />
+              <input type="file" accept="image/*" class="hidden" ref="fileInputRef" @change="onFileChange" :multiple="uploadImgs.length < 1" />
             </div>
             <!-- Prompt输入框 -->
             <textarea 
@@ -263,14 +263,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed, watch, defineAsyncComponent } from 'vue'
-import { createTask } from '~/api/index'
+import { ref, computed, watch, defineAsyncComponent } from 'vue'
+import { createTask, upload } from '~/api/index'
 import { useUserStore } from '~/stores/user'
-import { useRouter } from 'vue-router'
 import { 
   PhotoIcon, 
-  ChevronLeftIcon, 
-  ChevronRightIcon,
   ArrowDownTrayIcon,
   ArrowPathIcon,
   XMarkIcon
@@ -295,8 +292,8 @@ const originImg = ref('/img/5_before.webp')
 const resultImg = ref('/img/5_after.webp')
 
 // 上传的图片
-const uploadImg = ref('')
-const uploadFile = ref<File | null>(null)
+const uploadImgs = ref<string[]>([])
+const uploadFiles = ref<File[]>([])
 // 输入的 prompt
 const prompt = ref('')
 
@@ -336,22 +333,21 @@ const selectRatio = (val: string) => {
 const fileInputRef = ref<HTMLInputElement | null>(null)
 const onFileChange = (e: Event) => {
   if (!checkLogin()) return
-  
   const files = (e.target as HTMLInputElement).files
-  if (files && files[0]) {
-    handleUpload(files[0])
+  if (files) {
+    handleUpload(Array.from(files))
   }
 }
-const removeImage = () => {
-  uploadImg.value = ''
-  uploadFile.value = null
+const removeImage = (idx: number) => {
+  uploadImgs.value.splice(idx, 1)
+  uploadFiles.value.splice(idx, 1)
   if (fileInputRef.value) fileInputRef.value.value = ''
 }
 
 
 // 修改 checkUsageLimit 方法
 const checkUsageLimit = () => {
-  if (remainingTimes.value >= 0) {
+  if (remainingTimes.value <= 0) {
     showToast('Usage limit reached. Please upgrade to premium for more credits', 'error')
     setTimeout(() => {
       // 跳转到套餐模块
@@ -372,52 +368,62 @@ watch(
 )
 
 // 处理图片上传
-const handleUpload = async (file: File) => {
-  // 检查文件大小
-  if (file.size > 5 * 1024 * 1024) {
-    showToast('File size should not exceed 5MB', 'error')
-    return
+const handleUpload = async (files: File | File[]) => {
+  let fileArr = Array.isArray(files) ? files : [files]
+  // 只允许最多两张
+  fileArr = fileArr.slice(0, 2 - uploadFiles.value.length)
+  for (const file of fileArr) {
+    if (file.size > 5 * 1024 * 1024) {
+      showToast('File size should not exceed 5MB', 'error')
+      continue
+    }
+    uploadFiles.value.push(file)
+    uploadImgs.value.push(URL.createObjectURL(file))
   }
-  
-  // 保存文件引用
-  uploadFile.value = file
-  // 创建预览URL
-  uploadImg.value = URL.createObjectURL(file)
 }
 
 // 处理表单提交
 const handleSubmit = async () => {
   if (!checkLogin()) return
-
-  // 检查使用次数和处理状态
   if (!checkUsageLimit() || isProcessing.value) {
     return
   }
-
   if (!prompt.value) {
     showToast('Please enter a prompt', 'error')
-    // 获取焦点
     const promptInput = document.querySelector('textarea')
     if (promptInput) {
       promptInput.focus()
     }
     return
   }
-  
   if (prompt.value.length > 400) {
     showToast('Prompt should not exceed 400 characters', 'error')
     return
   }
-
-  isProcessing.value = true
-  let reqData = {
-    prompt: prompt.value,
-    size: selectedRatio.value,
-  } as any
-  if (uploadFile.value) {
-    reqData.file = uploadFile.value
+  if (uploadFiles.value.length === 0) {
+    showToast('Please upload at least one image.', 'error')
+    return
   }
+  isProcessing.value = true
   try {
+    // 先上传图片，拿到url
+    const urls: string[] = []
+    for (const file of uploadFiles.value) {
+      const res = await upload({file: file}) as any
+      if (res?.code == 200 && res.data) {
+        urls.push(res.data)
+      } else {
+        showToast('Image upload failed', 'error')
+        isProcessing.value = false
+        return
+      }
+    }
+    const image_url = urls.join('||')
+    let reqData = {
+      prompt: prompt.value,
+      size: selectedRatio.value,
+      image_url
+    }
     const response = await createTask(reqData) as any
     if (response?.code === 200) {
       generatedImage.value = response.data.image_url
@@ -468,8 +474,7 @@ const handleDownload = async () => {
 // 上传图片点击触发
 const handleUploadAreaClick = () => {
   if (!checkLogin()) return
-  
-  if (!uploadImg.value && fileInputRef.value) fileInputRef.value.click()
+  if (uploadImgs.value.length < 2 && fileInputRef.value) fileInputRef.value.click()
 }
 
 const showForm = ref(false)
@@ -495,13 +500,11 @@ watch(generatedImage, (newUrl) => {
 // 在 script setup 部分添加 handleBack 函数
 const handleBack = () => {
   showForm.value = false
-  // 清空表单数据
   prompt.value = ''
-  uploadImg.value = ''
-  uploadFile.value = null
+  uploadImgs.value = []
+  uploadFiles.value = []
   if (fileInputRef.value) fileInputRef.value.value = ''
   selectedRatio.value = 'match_input_image'
-  // 清空结果
   generatedImage.value = ''
   isProcessing.value = false
   isImageLoading.value = false
@@ -538,11 +541,10 @@ const checkLogin = () => {
 // 处理文件拖放
 const handleDrop = async (e: DragEvent) => {
   if (!checkLogin()) return
-  
   isDragging.value = false
   const files = e.dataTransfer?.files
-  if (files && files[0]) {
-    handleUpload(files[0])
+  if (files) {
+    handleUpload(Array.from(files))
   }
 }
 
@@ -564,8 +566,7 @@ const handleTextareaFocus = () => {
 // 在 script setup 部分添加 handleBrowseClick 函数
 const handleBrowseClick = () => {
   if (!checkLogin()) return
-  
-  if (fileInputRef.value) {
+  if (fileInputRef.value && uploadImgs.value.length < 2) {
     fileInputRef.value.click()
   }
 }
